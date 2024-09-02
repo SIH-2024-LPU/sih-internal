@@ -165,22 +165,62 @@ export default function LoginForm() {
     setForm(prev => ({ ...prev, [name]: value }))
   }
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   setIsLoading(true)
+  //   try {
+  //     const { data } = await axios.post(`${config.API_BASE_URL}/auth/login`, form)
+  //     localStorage.setItem('token', data.token)
+  //     localStorage.setItem('role', data.role)
+  //     setIsAuthenticated(true)
+  //     setRole(data.role)
+  //     toast.success("Login successful! Welcome back to your account.")
+  //   } catch (error) {
+  //     toast.error("Login failed. Please check your credentials and try again.")
+  //   } finally {
+  //     setIsLoading(false)
+  //   }
+  // }
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setIsLoading(true);
+  //   try {
+  //     const { data } = await axios.post(`${config.API_BASE_URL}/auth/login`, form);
+  //     localStorage.setItem('token', data.token);
+  //     localStorage.setItem('role', data.role);
+  //     setIsAuthenticated(true);
+  //     setRole(data.role);
+  //     toast.success("Login successful! Welcome back to your account.");
+  
+  //     // Refresh the page after successful login
+  //     window.location.reload();
+  //   } catch (error) {
+  //     toast.error("Login failed. Please check your credentials and try again.");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
     try {
-      const { data } = await axios.post(`${config.API_BASE_URL}/auth/login`, form)
-      localStorage.setItem('token', data.token)
-      localStorage.setItem('role', data.role)
-      setIsAuthenticated(true)
-      setRole(data.role)
-      toast.success("Login successful! Welcome back to your account.")
+      const { data } = await axios.post(`${config.API_BASE_URL}/auth/login`, form);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('role', data.role);
+      setIsAuthenticated(true);
+      setRole(data.role);
+      toast.success("Login successful! Welcome back to your account.");
+  
+      // Refresh the page and navigate to home
+      window.location.href = '/';
     } catch (error) {
-      toast.error("Login failed. Please check your credentials and try again.")
+      toast.error("Login failed. Please check your credentials and try again.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
+  
+  
 
   const handleLogout = () => {
     localStorage.removeItem('token')
