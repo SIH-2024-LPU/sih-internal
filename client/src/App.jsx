@@ -29,9 +29,16 @@ import JobDetails from './Pages/Recommendation/RecommDetails';
 import CareerForm from './Pages/Forms/CareerForm';
 import NotFound from './Pages/Error/NotFound';
 import CoolNavbar from './Pages/Headers/Navbar';
-import BookAppointment from './Pages/Mentor/List';
+
 import LoginForm from './Pages/User/Login';
 import SignupForm from './Pages/User/Signup';
+import JobTitlesManagement from './Pages/Forms/JobTitles';
+import CompaniesManagement from './Pages/Forms/CompaniesManagement';
+import CreativeApplicationForm from './Pages/MentorShip/Form';
+import AdminApplicationsPage from './Pages/MentorShip/List';
+import ApplicationTracker from './Pages/MentorShip/Tracker';
+import Dashboard from './Pages/DashBoard';
+import MentorRegistrationForm from './Pages/MentorShip/Registor';
 
 function App() {
   return (
@@ -42,9 +49,16 @@ function App() {
         <Route path="/recommendation" element={<Recommendation />} />
         <Route path="/job-details/:jobTitle" element={<JobDetails />} />
         <Route path="/careerform" element={<CareerForm />} />
-        <Route path="/bookappointment" element={<BookAppointment/>}/>
+    
         <Route path='/login' element={<LoginForm/>}/>
         <Route path ="/signup" element={<SignupForm/>}/>
+        <Route path='/JobForm' element={<JobTitlesManagement/>}/>
+        <Route path='/Companyform' element={<CompaniesManagement/>}/>
+        <Route path='/application' element={<CreativeApplicationForm/>}/>
+        <Route path="/mentoapplication" element={<AdminApplicationsPage/>}/>
+        <Route path='/tracker' element={<ApplicationTracker/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
+        <Route path='/addmentor' element={<MentorRegistrationForm/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

@@ -21,10 +21,28 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  phoneNumber: {
+    type: String,
+    required: true,
+  },
+  jobTitle: {
+    type: String,
+    required: true,
+  },
+  companiesJoined: [{
+    type: String,
+    required: true,
+  }],
+  experience: {
+    type: Number,
+    required: true,
+    min: 1,
+    max: 10,
+  },
   role: {
     type: String,
     required: true,
-    enum: ['Admin', 'User'],
+    enum: ['Admin', 'User', 'Mentor'],
   },
   newsletter: {
     type: Boolean,
