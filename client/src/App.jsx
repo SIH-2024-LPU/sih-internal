@@ -30,6 +30,8 @@ import CareerForm from './Pages/Forms/CareerForm';
 import NotFound from './Pages/Error/NotFound';
 import CoolNavbar from './Pages/Headers/Navbar';
 import BookAppointment from './Pages/Mentor/List';
+import LoginForm from './Pages/User/Login';
+import SignupForm from './Pages/User/Signup';
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
         <Route path="/job-details/:jobTitle" element={<JobDetails />} />
         <Route path="/careerform" element={<CareerForm />} />
         <Route path="/bookappointment" element={<BookAppointment/>}/>
+        <Route path='/login' element={<LoginForm/>}/>
+        <Route path ="/signup" element={<SignupForm/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
