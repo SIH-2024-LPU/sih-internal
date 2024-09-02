@@ -1,0 +1,261 @@
+
+'use client'
+
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Loader2, ChevronRight, ChevronLeft, Sparkles } from 'lucide-react'
+
+
+
+export default function CareerExplorer() {
+  const [page, setPage] = useState(1)
+  const [formData, setFormData] = useState({
+    tenthPercentage: '',
+    twelfthPercentage: '',
+    interest: '',
+    strength: ''
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [careerSuggestions, setCareerSuggestions] = useState([])
+  const navigate = useNavigate()
+
+  const handleJobClick = (job) => {
+    navigate(`/job-details/${job.jobTitle}`, { state: { job } })
+  }
+
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }))
+  }
+
+  const handleNext = () => {
+    if (page === 4) {
+      setIsLoading(true)
+      // Simulate AI prediction
+      setTimeout(() => {
+        setCareerSuggestions(careerData[formData.interest][formData.strength])
+        setIsLoading(false)
+        setPage(prevPage => prevPage + 1)
+      }, 2000)
+    } else {
+      setPage(prevPage => prevPage + 1)
+    }
+  }
+
+  const handleBack = () => {
+    setPage(prevPage => prevPage - 1)
+  }
+
+  const handleSkip = (field) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [field]: 'Skipped'
+    }))
+    handleNext()
+  }
+
+  const renderPage = () => {
+    switch(page) {
+      case 1:
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+          >
+            <Card className="w-full">
+              <CardHeader>
+                <CardTitle>10th Grade Percentage (Optional)</CardTitle>
+                <CardDescription>Enter your 10th grade percentage or skip</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center space-x-2">
+                  <Input
+                    id="tenthPercentage"
+                    name="tenthPercentage"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={formData.tenthPercentage}
+                    onChange={handleInputChange}
+                    placeholder="Enter percentage"
+                    className="w-full"
+                  />
+                  <span>%</span>
+                </div>
+                <div className="flex justify-between">
+                  <Button onClick={() => handleSkip('tenthPercentage')} variant="outline">Skip</Button>
+                  <Button onClick={handleNext}>Next <ChevronRight className="ml-2 h-4 w-4" /></Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )
+      case 2:
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+          >
+            <Card className="w-full">
+              <CardHeader>
+                <CardTitle>12th Grade Percentage (Optional)</CardTitle>
+                <CardDescription>Enter your 12th grade percentage or skip</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center space-x-2">
+                  <Input
+                    id="twelfthPercentage"
+                    name="twelfthPercentage"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={formData.twelfthPercentage}
+                    onChange={handleInputChange}
+                    placeholder="Enter percentage"
+                    className="w-full"
+                  />
+                  <span>%</span>
+                </div>
+                <div className="flex justify-between">
+                  <Button onClick={handleBack} variant="outline"><ChevronLeft className="mr-2 h-4 w-4" /> Back</Button>
+                  <Button onClick={() => handleSkip('twelfthPercentage')} variant="outline">Skip</Button>
+                  <Button onClick={handleNext}>Next <ChevronRight className="ml-2 h-4 w-4" /></Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )
+      case 3:
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+          >
+            <Card className="w-full">
+              <CardHeader>
+                <CardTitle>Area of Interest (Required)</CardTitle>
+                <CardDescription>Select your primary area of interest</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <RadioGroup name="interest" onValueChange={(value) => handleInputChange({ target: { name: 'interest', value } })}>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="Technology" id="technology" />
+                    <Label htmlFor="technology">Technology 💻</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="Medicine" id="medicine" />
+                    <Label htmlFor="medicine">Medicine 🏥</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="Business" id="business" />
+                    <Label htmlFor="business">Business 💼</Label>
+                  </div>
+                </RadioGroup>
+                <div className="flex justify-between">
+                  <Button onClick={handleBack} variant="outline"><ChevronLeft className="mr-2 h-4 w-4" /> Back</Button>
+                  <Button onClick={handleNext} disabled={!formData.interest}>Next <ChevronRight className="ml-2 h-4 w-4" /></Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )
+      case 4:
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+          >
+            <Card className="w-full">
+              <CardHeader>
+                <CardTitle>Your Biggest Strength (Required)</CardTitle>
+                <CardDescription>What do you consider your biggest strength?</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Select onValueChange={(value) => handleInputChange({ target: { name: 'strength', value } })}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select your biggest strength" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {strengthOptions.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <div className="flex justify-between">
+                  <Button onClick={handleBack} variant="outline"><ChevronLeft className="mr-2 h-4 w-4" /> Back</Button>
+                  <Button onClick={handleNext} disabled={!formData.strength}>Submit <Sparkles className="ml-2 h-4 w-4" /></Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )
+        case 5:
+            return (
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+              >
+                <Card className="w-full">
+                  <CardHeader>
+                    <CardTitle className="text-2xl">Your Career Suggestions</CardTitle>
+                    <CardDescription>Based on your interest in {formData.interest} and strength in {formData.strength}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    {isLoading ? (
+                      <div className="flex flex-col items-center justify-center h-64">
+                        <Loader2 className="h-8 w-8 animate-spin" />
+                        <p className="mt-4 text-sm text-muted-foreground">AI is analyzing your profile...</p>
+                      </div>
+                    ) : (
+                      <ul className="space-y-4">
+                        {careerSuggestions.map((job, index) => (
+                          <li key={index}>
+                            <Button
+                              variant="outline"
+                              className="w-full justify-between text-left font-normal"
+                              onClick={() => handleJobClick(job)}
+                            >
+                              <span>{job.jobTitle}</span>
+                              <span>{job.averageSalary}</span>
+                            </Button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )
+      default:
+        return null
+    }
+  }
+
+  return (
+    <div className="max-w-2xl mx-auto mt-10 p-6 bg-background rounded-lg shadow-lg space-y-6">
+      <Progress value={(page / 5) * 100} className="w-full" />
+      <AnimatePresence mode="wait">
+        {renderPage()}
+      </AnimatePresence>
+    </div>
+  )
+}

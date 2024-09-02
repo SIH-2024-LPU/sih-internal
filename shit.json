@@ -1,0 +1,218 @@
+"Business": {
+    "Leadership": [
+      {
+        jobTitle: "Management Consultant",
+        averageSalary: "$87,000",
+        description: "Advise organizations on improving their performance and operations.",
+        skills: ["Strategic Thinking", "Problem-Solving", "Business Analysis", "Project Management"],
+        companies: ["McKinsey & Company", "Boston Consulting Group", "Bain & Company", "Deloitte", "Accenture"],
+        education: ["MBA or related Master's degree", "Bachelor's degree for entry-level positions"],
+        workEnvironment: "Office and Client Sites, Frequent Travel",
+        jobOutlook: "Good, with 14% growth expected over the next decade",
+        challenges: ["Adapting to diverse client environments", "Managing tight project deadlines", "Balancing multiple client engagements"],
+        rewards: ["Exposure to various industries", "High earning potential", "Rapid career progression"],
+        topColleges: [
+          { name: "Harvard Business School", fees: "$73,440", duration: "2 years" },
+          { name: "Stanford Graduate School of Business", fees: "$74,706", duration: "2 years" },
+          { name: "Wharton School of the University of Pennsylvania", fees: "$81,378", duration: "2 years" }
+        ]
+      },
+      {
+        jobTitle: "Entrepreneur",
+        averageSalary: "Varies widely",
+        description: "Start and run your own business ventures.",
+        skills: ["Business Planning", "Financial Management", "Marketing", "Networking"],
+        companies: "Self-employed, various startups",
+        education: ["No specific requirement, but business education can be beneficial"],
+        workEnvironment: "Varied - Office, Remote, On-site",
+        jobOutlook: "Dependent on economic conditions and individual success",
+        challenges: ["Securing funding", "Managing all aspects of a business", "Dealing with uncertainty and risk"],
+        rewards: ["Being your own boss", "Potential for high financial returns", "Bringing innovative ideas to life"],
+        topColleges: [
+          { name: "Babson College", fees: "$52,608", duration: "4 years" },
+          { name: "Massachusetts Institute of Technology", fees: "$53,790", duration: "4 years" },
+          { name: "Stanford University", fees: "$55,473", duration: "4 years" }
+        ]
+      },
+      {
+        jobTitle: "Chief Executive Officer (CEO)",
+        averageSalary: "$193,850",
+        description: "Provide overall direction and strategy for an organization.",
+        skills: ["Strategic Planning", "Leadership", "Decision Making", "Financial Management"],
+        companies: "All major corporations and many smaller businesses",
+        education: ["MBA or related Master's degree", "Significant industry experience"],
+        workEnvironment: "Corporate Offices, Some Travel",
+        jobOutlook: "Stable, with 4% growth expected over the next decade",
+        challenges: ["Managing diverse stakeholder interests", "Navigating complex business environments", "Maintaining company growth and profitability"],
+        rewards: ["High level of influence", "Substantial compensation packages", "Opportunity to shape organizational direction"],
+        topColleges: [
+          { name: "Harvard Business School", fees: "$73,440", duration: "2 years" },
+          { name: "Stanford Graduate School of Business", fees: "$74,706", duration: "2 years" },
+          { name: "INSEAD", fees: "€89,000", duration: "1 year" }
+        ]
+      }
+    ],
+    "Communication": [
+      {
+        jobTitle: "Marketing Manager",
+        averageSalary: "$136,000",
+        description: "Develop and implement marketing strategies to promote products or services.",
+        skills: ["Marketing Strategy", "Brand Management", "Digital Marketing", "Analytics"],
+        companies: ["Procter & Gamble", "Unilever", "Coca-Cola", "Nike", "Apple"],
+        education: ["Bachelor's or Master's in Marketing, Business, or related field"],
+        workEnvironment: "Corporate Offices, Some Remote Work",
+        jobOutlook: "Good, with 10% growth expected over the next decade",
+        challenges: ["Keeping up with rapidly changing digital landscape", "Measuring marketing ROI", "Managing diverse marketing channels"],
+        rewards: ["Creative expression in business context", "Opportunity to influence consumer behavior", "Dynamic and evolving field"],
+        topColleges: [
+          { name: "Northwestern University (Kellogg)", fees: "$74,468", duration: "2 years" },
+          { name: "University of Pennsylvania (Wharton)", fees: "$81,378", duration: "2 years" },
+          { name: "Columbia Business School", fees: "$77,376", duration: "2 years" }
+        ]
+      },
+      {
+        jobTitle: "Public Relations Specialist",
+        averageSalary: "$62,000",
+        description: "Manage the public image of organizations or individuals.",
+        skills: ["Media Relations", "Crisis Management", "Writing", "Social Media Management"],
+        companies: ["PR Agencies", "Corporations", "Non-profit Organizations", "Government Agencies"],
+        education: ["Bachelor's in Public Relations, Communications, or Journalism"],
+        workEnvironment: "Offices, Some Remote Work, Event Venues",
+        jobOutlook: "Stable, with 11% growth expected over the next decade",
+        challenges: ["Managing public perception during crises", "Adapting to changing media landscapes", "Measuring PR impact"],
+        rewards: ["Shaping public narratives", "Diverse and dynamic work environments", "Opportunity for high-profile projects"],
+        topColleges: [
+          { name: "University of Southern California", fees: "$58,195", duration: "4 years" },
+          { name: "New York University", fees: "$53,308", duration: "4 years" },
+          { name: "Boston University", fees: "$55,892", duration: "4 years" }
+        ]
+      },
+      {
+        jobTitle: "Sales Manager",
+        averageSalary: "$126,640",
+        description: "Lead and guide a team of sales representatives to meet company revenue goals.",
+        skills: ["Sales Strategy", "Team Leadership", "Customer Relationship Management", "Negotiation"],
+        companies: ["Oracle", "Salesforce", "IBM", "Microsoft", "ADP"],
+        education: ["Bachelor's in Business, Marketing, or related field"],
+        workEnvironment: "Offices, Client Sites, Some Travel",
+        jobOutlook: "Average, with 4% growth expected over the next decade",
+        challenges: ["Meeting aggressive sales targets", "Motivating and developing sales teams", "Adapting to changing customer needs and market conditions"],
+        rewards: ["High earning potential with commissions", "Dynamic and goal-oriented environment", "Opportunity to directly impact company growth"],
+        topColleges: [
+          { name: "University of Pennsylvania (Wharton)", fees: "$81,378", duration: "4 years" },
+          { name: "Michigan State University", fees: "$39,766", duration: "4 years" },
+          { name: "Indiana University (Kelley)", fees: "$36,512", duration: "4 years" }
+        ]
+      }
+    ],
+    "Financial Acumen": [
+      {
+        jobTitle: "Financial Analyst",
+        averageSalary: "$83,660",
+        description: "Provide guidance to businesses and individuals making investment decisions.",
+        skills: ["Financial Modeling", "Data Analysis", "Market Research", "Financial Reporting"],
+        companies: ["JPMorgan Chase", "Goldman Sachs", "Morgan Stanley", "BlackRock", "Vanguard"],
+        education: ["Bachelor's in Finance, Accounting, Economics, or related field"],
+        workEnvironment: "Offices, Some Remote Work",
+        jobOutlook: "Good, with 6% growth expected over the next decade",
+        challenges: ["Analyzing complex financial data", "Staying updated with market trends", "Making accurate financial projections"],
+        rewards: ["Intellectual stimulation", "Potential for high earnings", "Opportunity to influence major financial decisions"],
+        topColleges: [
+          { name: "New York University (Stern)", fees: "$53,308", duration: "4 years" },
+          { name: "University of Pennsylvania (Wharton)", fees: "$81,378", duration: "4 years" },
+          { name: "Massachusetts Institute of Technology", fees: "$53,790", duration: "4 years" }
+        ]
+      },
+      {
+        jobTitle: "Investment Banker",
+        averageSalary: "$101,420",
+        description: "Help companies and governments raise capital by issuing and selling securities.",
+        skills: ["Financial Modeling", "Valuation", "Mergers & Acquisitions", "Client Relationship Management"],
+        companies: ["Goldman Sachs", "JPMorgan Chase", "Morgan Stanley", "Citigroup", "Bank of America Merrill Lynch"],
+        education: ["Bachelor's in Finance, Economics, or related field; MBA often preferred"],
+        workEnvironment: "Offices, Long Hours",
+        jobOutlook: "Average, with 4% growth expected over the next decade",
+        challenges: ["High-pressure work environment", "Long and irregular hours", "Intense competition"],
+        rewards: ["Very high earning potential", "Exposure to high-profile deals", "Rapid career progression"],
+        topColleges: [
+          { name: "University of Pennsylvania (Wharton)", fees: "$81,378", duration: "4 years" },
+          { name: "New York University (Stern)", fees: "$53,308", duration: "4 years" },
+          { name: "Harvard University", fees: "$51,925", duration: "4 years" }
+        ]
+      }
+    ]
+  },
+  "Education": {
+    "Teaching": [
+      {
+        jobTitle: "Elementary School Teacher",
+        averageSalary: "$60,660",
+        description: "Educate young students in basic subjects like math, reading, and science.",
+        skills: ["Classroom Management", "Curriculum Development", "Communication", "Patience"],
+        companies: ["Public School Districts", "Private Schools", "Charter Schools"],
+        education: ["Bachelor's in Elementary Education", "Teaching Certification"],
+        workEnvironment: "Schools, Classrooms",
+        jobOutlook: "Average, with 4% growth expected over the next decade",
+        challenges: ["Managing diverse learning needs", "Adapting to educational policy changes", "Balancing teaching with administrative tasks"],
+        rewards: ["Shaping young minds", "Long summer breaks", "Job stability"],
+        topColleges: [
+          { name: "Vanderbilt University (Peabody)", fees: "$52,070", duration: "4 years" },
+          { name: "University of Michigan", fees: "$52,266", duration: "4 years" },
+          { name: "Teachers College, Columbia University", fees: "$48,390", duration: "2 years (Master's)" }
+        ]
+      },
+      {
+        jobTitle: "University Professor",
+        averageSalary: "$80,560",
+        description: "Teach courses in their field of expertise at the college or university level.",
+        skills: ["Research", "Lecturing", "Grant Writing", "Publishing"],
+        companies: ["Universities", "Colleges", "Community Colleges"],
+        education: ["PhD in the relevant field"],
+        workEnvironment: "Universities, Research Facilities",
+        jobOutlook: "Good, with 12% growth expected over the next decade",
+        challenges: ["Balancing teaching and research", "Securing research funding", "Publishing in competitive academic journals"],
+        rewards: ["Intellectual stimulation", "Academic freedom", "Opportunity to shape future professionals"],
+        topColleges: [
+          { name: "Stanford University", fees: "$55,473", duration: "5-7 years (PhD)" },
+          { name: "Harvard University", fees: "$51,925", duration: "5-7 years (PhD)" },
+          { name: "Massachusetts Institute of Technology", fees: "$53,790", duration: "5-7 years (PhD)" }
+        ]
+      }
+    ],
+    "Curriculum Development": [
+      {
+        jobTitle: "Instructional Designer",
+        averageSalary: "$66,290",
+        description: "Create educational experiences and instructional materials for various learning environments.",
+        skills: ["Curriculum Design", "E-learning Technologies", "Educational Psychology", "Project Management"],
+        companies: ["Educational Technology Companies", "Universities", "Corporate Training Departments"],
+        education: ["Master's in Instructional Design, Educational Technology, or related field"],
+        workEnvironment: "Offices, Remote Work",
+        jobOutlook: "Good, with 6% growth expected over the next decade",
+        challenges: ["Keeping up with evolving educational technologies", "Designing for diverse learning styles", "Measuring learning outcomes"],
+        rewards: ["Creating impactful learning experiences", "Combining creativity with education", "Potential for remote work"],
+        topColleges: [
+          { name: "Florida State University", fees: "$21,683", duration: "2 years (Master's)" },
+          { name: "Indiana University", fees: "$36,512", duration: "2 years (Master's)" },
+          { name: "University of Georgia", fees: "$27,658", duration: "2 years (Master's)" }
+        ]
+      },
+      {
+        jobTitle: "Education Policy Analyst",
+        averageSalary: "$63,270",
+        description: "Analyze and develop educational policies to improve educational systems.",
+        skills: ["Policy Analysis", "Research", "Data Analysis", "Report Writing"],
+        companies: ["Government Education Departments", "Think Tanks", "Non-profit Organizations"],
+        education: ["Master's in Education Policy, Public Policy, or related field"],
+        workEnvironment: "Offices, Some Remote Work",
+        jobOutlook: "Average, with 5% growth expected over the next decade",
+        challenges: ["Navigating complex political landscapes", "Balancing diverse stakeholder interests", "Implementing effective policy changes"],
+        rewards: ["Influencing education on a systemic level", "Contributing to educational equity", "Engaging in meaningful policy debates"],
+        topColleges: [
+          { name: "Harvard Graduate School of Education", fees: "$51,925", duration: "1 year (Master's)" },
+          { name: "Stanford Graduate School of Education", fees: "$55,473", duration: "1 year (Master's)" },
+          { name: "Teachers College, Columbia University", fees: "$48,390", duration: "2 years (Master's)" }
+        ]
+      }
+    ]
+  }
