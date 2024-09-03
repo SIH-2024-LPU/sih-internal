@@ -23,7 +23,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/job',Title)
 app.use('/api', applicationRoutes);
 
-app.use('/api/auth', mentorRoutes);
+app.use('/api', mentorRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

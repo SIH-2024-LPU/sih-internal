@@ -3,6 +3,8 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const emailjs = require('@emailjs/nodejs');
+const MentorAppointment = require('../models/Mentor');
+const mongoose = require('mongoose');
 
 emailjs.init({
   publicKey: 'VtWNYb9AxIQiQsP_s',
@@ -45,6 +47,233 @@ exports.registerMentor = async (req, res) => {
     res.status(201).json({ message: 'Mentor registered successfully' });
   } catch (error) {
     console.error('Error during mentor registration:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+
+exports.getMentors = async (req, res) => {
+    try {
+      const { jobTitle, experience } = req.query;
+      let query = { role: 'Mentor' };
+  
+      if (jobTitle) {
+        query.jobTitle = jobTitle;
+      }
+  
+      if (experience) {
+        query.experience = { $gte: parseInt(experience) };
+      }
+  
+      const mentors = await User.find(query).select('name jobTitle experience');
+      res.json(mentors);
+    } catch (error) {
+      console.error('Error fetching mentors:', error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  };
+  
+//   exports.bookAppointment = async (req, res) => {
+//     try {
+//       const { mentorId, userId, date } = req.body;
+//       const mentor = await User.findById(mentorId);
+//       const user = await User.findById(userId);
+  
+//       if (!mentor || !user) {
+//         return res.status(404).json({ message: 'Mentor or User not found' });
+//       }
+  
+//       if (!mentor.appointments) {
+//         mentor.appointments = [];
+//       }
+  
+//       mentor.appointments.push({ userId, date });
+//       await mentor.save();
+  
+//       res.status(201).json({ message: 'Appointment booked successfully' });
+//     } catch (error) {
+//       console.error('Error booking appointment:', error);
+//       res.status(500).json({ message: 'Server Error' });
+//     }
+//   };
+
+//Workinf 
+
+
+// exports.bookAppointment = async (req, res) => {
+//     try {
+//       const { mentorId, userId, date } = req.body;
+      
+//       // Validate that mentorId and userId are valid ObjectIds
+//       if (!mongoose.Types.ObjectId.isValid(mentorId) || !mongoose.Types.ObjectId.isValid(userId)) {
+//         return res.status(400).json({ message: 'Invalid mentor or user ID' });
+//       }
+  
+//       const mentor = await User.findById(mentorId);
+//       const user = await User.findById(userId);
+  
+//       if (!mentor || !user) {
+//         return res.status(404).json({ message: 'Mentor or User not found' });
+//       }
+  
+//       if (!mentor.appointments) {
+//         mentor.appointments = [];
+//       }
+  
+//       mentor.appointments.push({ userId, date });
+//       await mentor.save();
+  
+//       res.status(201).json({ message: 'Appointment booked successfully' });
+//     } catch (error) {
+//       console.error('Error booking appointment:', error);
+//       res.status(500).json({ message: 'Server Error' });
+//     }
+//   };
+  
+
+  // exports.getMentorAppointments = async (req, res) => {
+  //   try {
+  //     const { mentorId } = req.params;
+  //     const mentor = await User.findById(mentorId).populate('appointments.userId', 'name email');
+  
+  //     if (!mentor) {
+  //       return res.status(404).json({ message: 'Mentor not found' });
+  //     }
+  
+  //     res.json(mentor.appointments);
+  //   } catch (error) {
+  //     console.error('Error fetching mentor appointments:', error);
+  //     res.status(500).json({ message: 'Server Error' });
+  //   }
+  // };
+  
+
+
+
+
+// exports.scheduleMeeting = async (req, res) => {
+//   try {
+//     const { appointmentId } = req.params;
+//     const { date, time, meetLink } = req.body;
+
+//     const mentor = await User.findOne({ 'appointments._id': appointmentId });
+
+//     if (!mentor) {
+//       return res.status(404).json({ message: 'Appointment not found' });
+//     }
+
+//     const appointment = mentor.appointments.id(appointmentId);
+//     appointment.scheduledDate = new Date(`${date}T${time}`);
+//     appointment.meetLink = meetLink;
+
+//     await mentor.save();
+
+//     res.json({ message: 'Meeting scheduled successfully' });
+//   } catch (error) {
+//     console.error('Error scheduling meeting:', error);
+//     res.status(500).json({ message: 'Server Error' });
+//   }
+// };
+
+// exports.getUserAppointments = async (req, res) => {
+//   try {
+//     const { userId } = req.params;
+//     const appointments = await User.find({ 'appointments.userId': userId })
+//       .select('appointments')
+//       .populate('appointments.userId', 'name email')
+//       .lean();
+
+//     const userAppointments = appointments.flatMap(mentor => 
+//       mentor.appointments.filter(app => app.userId._id.toString() === userId)
+//     );
+
+//     res.json(userAppointments);
+//   } catch (error) {
+//     console.error('Error fetching user appointments:', error);
+//     res.status(500).json({ message: 'Server Error' });
+//   }
+// };
+
+
+
+exports.bookAppointment = async (req, res) => {
+  try {
+    const { mentorId, userId, date } = req.body;
+    
+    if (!mongoose.Types.ObjectId.isValid(mentorId) || !mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ message: 'Invalid mentor or user ID' });
+    }
+
+    const mentor = await User.findById(mentorId);
+    const user = await User.findById(userId);
+
+    if (!mentor || !user) {
+      return res.status(404).json({ message: 'Mentor or User not found' });
+    }
+
+    const newAppointment = new MentorAppointment({
+      mentorId,
+      userId,
+      requestedDate: date
+    });
+
+    await newAppointment.save();
+
+    res.status(201).json({ message: 'Appointment booked successfully' });
+  } catch (error) {
+    console.error('Error booking appointment:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+exports.getMentorAppointments = async (req, res) => {
+  try {
+    const { mentorId } = req.params;
+    const appointments = await MentorAppointment.find({ mentorId })
+      .populate('userId', 'name email')
+      .sort({ requestedDate: 1 });
+
+    res.json(appointments);
+  } catch (error) {
+    console.error('Error fetching mentor appointments:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+exports.scheduleMeeting = async (req, res) => {
+  try {
+    const { appointmentId } = req.params;
+    const { date, time, meetLink } = req.body;
+
+    const appointment = await MentorAppointment.findById(appointmentId);
+
+    if (!appointment) {
+      return res.status(404).json({ message: 'Appointment not found' });
+    }
+
+    appointment.scheduledDate = new Date(`${date}T${time}`);
+    appointment.meetLink = meetLink;
+    appointment.status = 'scheduled';
+
+    await appointment.save();
+
+    res.json({ message: 'Meeting scheduled successfully' });
+  } catch (error) {
+    console.error('Error scheduling meeting:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+exports.getUserAppointments = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const appointments = await MentorAppointment.find({ userId })
+      .populate('mentorId', 'name email jobTitle')
+      .sort({ requestedDate: 1 });
+
+    res.json(appointments);
+  } catch (error) {
+    console.error('Error fetching user appointments:', error);
     res.status(500).json({ message: 'Server Error' });
   }
 };

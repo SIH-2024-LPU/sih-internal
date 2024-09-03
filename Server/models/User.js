@@ -23,19 +23,19 @@ const UserSchema = new mongoose.Schema({
   },
   phoneNumber: {
     type: String,
-    required: true,
+    
   },
   jobTitle: {
     type: String,
-    required: true,
+    
   },
   companiesJoined: [{
     type: String,
-    required: true,
+   
   }],
   experience: {
     type: Number,
-    required: true,
+    
     min: 1,
     max: 10,
   },
@@ -44,6 +44,16 @@ const UserSchema = new mongoose.Schema({
     required: true,
     enum: ['Admin', 'User', 'Mentor'],
   },
+  appointments: [{
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    date: {
+      type: Date,
+      required: true
+    }
+  }],
   newsletter: {
     type: Boolean,
     default: false,
@@ -52,6 +62,14 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  }
 });
 
 module.exports = mongoose.model('User', UserSchema);

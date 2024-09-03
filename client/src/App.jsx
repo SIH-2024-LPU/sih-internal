@@ -39,6 +39,9 @@ import AdminApplicationsPage from './Pages/MentorShip/List';
 import ApplicationTracker from './Pages/MentorShip/Tracker';
 import Dashboard from './Pages/DashBoard';
 import MentorRegistrationForm from './Pages/MentorShip/Registor';
+import MentorList from './Pages/MentorShip/MentorList';
+import MentorAppointments from './Pages/MentorShip/MentorAppointments';
+import UserAppointments from './Pages/MentorShip/UserAppointment';
 
 function App() {
   return (
@@ -59,6 +62,10 @@ function App() {
         <Route path='/tracker' element={<ApplicationTracker/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/addmentor' element={<MentorRegistrationForm/>}/>
+        <Route path = "/mentorship" element={<MentorList/>}/>
+        <Route path='/appointment' element={<MentorAppointments/>}/>
+        <Route path="/scheduleappointment" element={<UserAppointments/>}/>
+        {/* <Route path="/mentor-appointments/:mentorId" component={MentorAppointments} /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
