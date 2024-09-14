@@ -10,6 +10,9 @@ const strengthRoutes = require('./routes/strengthRoutes');
 const skillsRoutes = require('./routes/skillsRoutes');
 const collegesRoutes = require('./routes/collegesRoutes');
 const recommendationRoutes = require('./routes/Recommendation');
+const workshopRoutes = require('./routes/workshopRoutes');
+const path = require('path');
+
 const cors = require('cors'); // Import cors
 const interestRoutes = require('./routes/interestRoutes');
 
@@ -23,6 +26,8 @@ connectDB();
 app.use(cors()); // Enable CORS
 app.use(express.json({ limit: '10mb' }));
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Routes
 app.use('/api/careers', careerRoutes);
 app.use('/api/auth', authRoutes);
@@ -35,6 +40,9 @@ app.use('/api', recommendationRoutes);
 app.use('/api/videos', videoRoutes);
 app.use('/api/job', strengthRoutes);
 app.use('/api/job', skillsRoutes);
+app.use('/api/workshops', workshopRoutes);
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

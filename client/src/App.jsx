@@ -109,6 +109,9 @@ import CollegesManagement from './Pages/Forms/CollegesManagement';
 import RecommendationForm from './Pages/Forms/Recommendation';
 import Button from "./Pages/Button"
 import CareerRecommendationForm from './Pages/Forms/Questions';
+import AddWorkshop from './Pages/Forms/AddWorkshop';
+import AvailableWorkshops from './Pages/Workshops/AvailableWorkshops';
+import AdminDashboard from './Admin/DashBoard';
 
 function App() {
   return (
@@ -127,7 +130,9 @@ function App() {
         <Route path="/mentorship" element={<MentorList />} />
         <Route path='/question' element={<CareerRecommendationForm/>}/>
         <Route path='/button' element={<Button/>}/>
-
+        <Route path='/workshopAdd'element={<AddWorkshop/>}/>
+        <Route path="/workshops"element={<AvailableWorkshops/>}/>
+        <Route path='/dashboardAdmin' element={<AdminDashboard/>}/>
         {/* User protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['User', 'Mentor', 'Admin']} />}>
           <Route path="/careerform" element={<CareerForm />} />
