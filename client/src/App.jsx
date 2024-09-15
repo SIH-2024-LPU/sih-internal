@@ -129,10 +129,10 @@ function App() {
         <Route path ="/learnlist" element={<VideoList/>}/>
         <Route path="/mentorship" element={<MentorList />} />
         <Route path='/question' element={<CareerRecommendationForm/>}/>
-        <Route path='/button' element={<Button/>}/>
-        <Route path='/workshopAdd'element={<AddWorkshop/>}/>
+        <Route path='/button' element={<Button/>}/>   
+        <Route path='/workshopAdd'element={<AddWorkshop/>}/> {/*Admin*/}
         <Route path="/workshops"element={<AvailableWorkshops/>}/>
-        <Route path='/dashboardAdmin' element={<AdminDashboard/>}/>
+        <Route path='/dashboardAdmin' element={<AdminDashboard/>}/>   {/*Admin*/}
         {/* User protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['User', 'Mentor', 'Admin']} />}>
           <Route path="/careerform" element={<CareerForm />} />
