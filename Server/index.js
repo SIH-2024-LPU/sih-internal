@@ -11,6 +11,7 @@ const skillsRoutes = require('./routes/skillsRoutes');
 const collegesRoutes = require('./routes/collegesRoutes');
 const recommendationRoutes = require('./routes/Recommendation');
 const workshopRoutes = require('./routes/workshopRoutes');
+const resourceRoutes = require('./routes/resourceRoutes');
 const path = require('path');
 
 const cors = require('cors'); // Import cors
@@ -41,7 +42,7 @@ app.use('/api/videos', videoRoutes);
 app.use('/api/job', strengthRoutes);
 app.use('/api/job', skillsRoutes);
 app.use('/api/workshops', workshopRoutes);
-
+app.use('/api', resourceRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

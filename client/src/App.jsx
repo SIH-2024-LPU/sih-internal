@@ -112,6 +112,8 @@ import CareerRecommendationForm from './Pages/Forms/Questions';
 import AddWorkshop from './Pages/Forms/AddWorkshop';
 import AvailableWorkshops from './Pages/Workshops/AvailableWorkshops';
 import AdminDashboard from './Admin/DashBoard';
+import AddResourcePage from './Pages/Resourses/AddResourses';
+import ViewBooksPage from './Pages/Resourses/ViewResourses';
 
 function App() {
   return (
@@ -133,6 +135,8 @@ function App() {
         <Route path='/workshopAdd'element={<AddWorkshop/>}/> {/*Admin*/}
         <Route path="/workshops"element={<AvailableWorkshops/>}/>
         <Route path='/dashboardAdmin' element={<AdminDashboard/>}/>   {/*Admin*/}
+        <Route path="/addResources" element={<AddResourcePage/>}/>    {/*Admin*/}
+        <Route path ="/viewbooks" element={<ViewBooksPage/>}/>
         {/* User protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['User', 'Mentor', 'Admin']} />}>
           <Route path="/careerform" element={<CareerForm />} />
