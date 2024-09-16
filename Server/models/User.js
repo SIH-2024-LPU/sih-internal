@@ -6,6 +6,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  imageUrl: {
+    type: String,
+    default: '',
+  },
   name: {
     type: String,
     required: true,

@@ -114,6 +114,7 @@ import AvailableWorkshops from './Pages/Workshops/AvailableWorkshops';
 import AdminDashboard from './Admin/DashBoard';
 import AddResourcePage from './Pages/Resourses/AddResourses';
 import ViewBooksPage from './Pages/Resourses/ViewResourses';
+import MentorFeedback from './Pages/MentorShip/MentoFeedback';
 
 function App() {
   return (
@@ -137,6 +138,7 @@ function App() {
         <Route path='/dashboardAdmin' element={<AdminDashboard/>}/>   {/*Admin*/}
         <Route path="/addResources" element={<AddResourcePage/>}/>    {/*Admin*/}
         <Route path ="/viewbooks" element={<ViewBooksPage/>}/>
+        <Route path="/userFeedback" element={<MentorFeedback/>}/>
         {/* User protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['User', 'Mentor', 'Admin']} />}>
           <Route path="/careerform" element={<CareerForm />} />
@@ -144,12 +146,12 @@ function App() {
           <Route path="/tracker" element={<ApplicationTracker />} />
           <Route path="/dashboard" element={<Dashboard />} />
          
-          <Route path="/scheduleappointment" element={<UserAppointments />} />
+          <Route path="/my-applications" element={<UserAppointments />} />
         </Route>
 
         {/* Mentor protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['Mentor', 'Admin']} />}>
-          <Route path="/appointment" element={<MentorAppointments />} />
+          <Route path="/my-sessions" element={<MentorAppointments />} />
           <Route path="/interestForm" element={<InterestManagement/>}/>
           <Route path='/StrengthForm' element={<StrengthManagement/>}/>
           <Route path='/skillform' element={<SkillsManagement/>}/>

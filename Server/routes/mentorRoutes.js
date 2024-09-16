@@ -6,13 +6,19 @@ const { verifyToken } = require('../middleware/auth'); // Assuming you have this
 
 
 router.post('/register-mentor', mentorController.registerMentor);
+router.get('/all-mentors', mentorController.getAllMentors);
+router.put('/update-mentor/:id', verifyToken, mentorController.updateMentor);
+router.delete('/delete-mentor/:id', verifyToken, mentorController.deleteMentor);
 
 router.get('/mentors', mentorController.getMentors);
 router.post('/book-appointment', mentorController.bookAppointment);
 router.get('/mentor-appointments/:mentorId', mentorController.getMentorAppointments);
 router.put('/schedule-meeting/:appointmentId',  mentorController.scheduleMeeting);
 router.get('/user-appointments/:userId',  mentorController.getUserAppointments);
-
+router.put('/complete-session/:appointmentId', verifyToken, mentorController.completeSession);
+router.post('/submit-rating', verifyToken, mentorController.submitRating);
+router.get('/mentor-feedback/:mentorId', verifyToken, mentorController.getMentorFeedback);
+router.get('/all-feedback', mentorController.getAllFeedback);
 
 
 router.get('/job-titles', async (req, res) => {
@@ -49,7 +55,24 @@ router.get('/job-titles', async (req, res) => {
     }
   });
   
-  module.exports = router;
+  router.get('/skills', async (req, res) => {
+    try {
+      const skills = await User.distinct('skills', { role: 'Mentor' });
+      res.json(skills);
+    } catch (error) {
+      res.status(500).json({ message: 'Server Error' });
+    }
+  });
+  
+  // Get unique companies
+  router.get('/companies', async (req, res) => {
+    try {
+      const companies = await User.distinct('companiesJoined', { role: 'Mentor' });
+      res.json(companies);
+    } catch (error) {
+      res.status(500).json({ message: 'Server Error' });
+    }
+  });
 
 
 module.exports = router;

@@ -11,8 +11,49 @@ emailjs.init({
   privateKey: 'mrFJw2Q0Hj6tCJ9pd-rPE'
 });
 
+// exports.registerMentor = async (req, res) => {
+//   const { name, email, phoneNumber, jobTitle, companiesJoined, experience, password, username } = req.body;
+
+//   try {
+//     const hashedPassword = await bcrypt.hash(password, 10);
+
+//     const newMentor = new User({
+//       username,
+//       name,
+//       email,
+//       phoneNumber,
+//       jobTitle,
+//       companiesJoined,
+//       experience,
+//       password: hashedPassword,
+//       role: 'Mentor',
+//     });
+
+//     await newMentor.save();
+
+//     // Send email
+//     const templateParams = {
+//       to_name: name,
+//       to_email: email,
+//       username: username,
+//       password: password, // Note: Sending password via email is not secure. Consider alternatives.
+//       job_title: jobTitle,
+//       companies: companiesJoined.join(', '),
+//       experience: experience
+//     };
+
+//     await emailjs.send('service_u8vd6xq', 'template_v68ai1q', templateParams);
+
+//     res.status(201).json({ message: 'Mentor registered successfully' });
+//   } catch (error) {
+//     console.error('Error during mentor registration:', error);
+//     res.status(500).json({ message: 'Server Error' });
+//   }
+// };
+
+
 exports.registerMentor = async (req, res) => {
-  const { name, email, phoneNumber, jobTitle, companiesJoined, experience, password, username } = req.body;
+  const { name, email, phoneNumber, jobTitle, companiesJoined, experience, password, username, imageUrl } = req.body;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -27,26 +68,58 @@ exports.registerMentor = async (req, res) => {
       experience,
       password: hashedPassword,
       role: 'Mentor',
+      imageUrl,
     });
 
     await newMentor.save();
 
-    // Send email
-    const templateParams = {
-      to_name: name,
-      to_email: email,
-      username: username,
-      password: password, // Note: Sending password via email is not secure. Consider alternatives.
-      job_title: jobTitle,
-      companies: companiesJoined.join(', '),
-      experience: experience
-    };
-
-    await emailjs.send('service_u8vd6xq', 'template_v68ai1q', templateParams);
-
-    res.status(201).json({ message: 'Mentor registered successfully' });
+    // ... rest of the function ...
   } catch (error) {
     console.error('Error during mentor registration:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+exports.getAllMentors = async (req, res) => {
+  try {
+    const mentors = await User.find({ role: 'Mentor' }).select('-password');
+    res.json(mentors);
+  } catch (error) {
+    console.error('Error fetching mentors:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+exports.updateMentor = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updateData = req.body;
+    
+    const updatedMentor = await User.findByIdAndUpdate(id, updateData, { new: true }).select('-password');
+    
+    if (!updatedMentor) {
+      return res.status(404).json({ message: 'Mentor not found' });
+    }
+    
+    res.json(updatedMentor);
+  } catch (error) {
+    console.error('Error updating mentor:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+exports.deleteMentor = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const deletedMentor = await User.findByIdAndDelete(id);
+    
+    if (!deletedMentor) {
+      return res.status(404).json({ message: 'Mentor not found' });
+    }
+    
+    res.json({ message: 'Mentor deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting mentor:', error);
     res.status(500).json({ message: 'Server Error' });
   }
 };
@@ -275,5 +348,134 @@ exports.getUserAppointments = async (req, res) => {
   } catch (error) {
     console.error('Error fetching user appointments:', error);
     res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+
+
+
+
+// exports.completeSession = async (req, res) => {
+//   try {
+//     const { appointmentId } = req.params;
+    
+//     const appointment = await MentorAppointment.findById(appointmentId);
+    
+//     if (!appointment) {
+//       return res.status(404).json({ message: 'Appointment not found' });
+//     }
+    
+//     if (appointment.mentorId.toString() !== req.user._id.toString()) {
+//       return res.status(403).json({ message: 'Not authorized to complete this session' });
+//     }
+    
+//     appointment.status = 'completed';
+//     await appointment.save();
+    
+//     res.json({ message: 'Session marked as completed successfully' });
+//   } catch (error) {
+//     console.error('Error completing session:', error);
+//     res.status(500).json({ message: 'Server Error' });
+//   }
+// };
+
+
+exports.completeSession = async (req, res) => {
+  try {
+    const { appointmentId } = req.params;
+    
+    if (!req.user) {
+      return res.status(401).json({ message: 'User not authenticated' });
+    }
+
+    const appointment = await MentorAppointment.findById(appointmentId);
+    
+    if (!appointment) {
+      return res.status(404).json({ message: 'Appointment not found' });
+    }
+    
+    if (appointment.mentorId.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: 'Not authorized to complete this session' });
+    }
+    
+    appointment.status = 'completed';
+    await appointment.save();
+    
+    res.json({ message: 'Session marked as completed successfully' });
+  } catch (error) {
+    console.error('Error completing session:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+
+exports.submitRating = async (req, res) => {
+  try {
+    const { appointmentId, communicationSkills, clarityOfGuidance, learningOutcomes, frequencyAndQualityOfMeetings, remarks } = req.body;
+    
+    const appointment = await MentorAppointment.findById(appointmentId);
+    
+    if (!appointment) {
+      return res.status(404).json({ message: 'Appointment not found' });
+    }
+    
+    if (appointment.userId.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: 'Not authorized to rate this session' });
+    }
+    
+    appointment.rating = {
+      communicationSkills,
+      clarityOfGuidance,
+      learningOutcomes,
+      frequencyAndQualityOfMeetings,
+      remarks
+    };
+    
+    await appointment.save();
+    
+    res.json({ message: 'Rating submitted successfully' });
+  } catch (error) {
+    console.error('Error submitting rating:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+
+exports.getMentorFeedback = async (req, res) => {
+  try {
+    const { mentorId } = req.params;
+    
+    console.log('Received mentorId:', mentorId); // Add this line for debugging
+
+    if (!mentorId) {
+      return res.status(400).json({ message: 'mentorId is required' });
+    }
+
+    const feedback = await MentorAppointment.find({ 
+      mentorId, 
+      status: 'completed',
+      rating: { $exists: true }
+    }).populate('userId', 'name');
+    
+    res.json(feedback);
+  } catch (error) {
+    console.error('Error fetching mentor feedback:', error);
+    res.status(500).json({ message: 'Server Error', error: error.message });
+  }
+};
+
+
+
+exports.getAllFeedback = async (req, res) => {
+  try {
+    const feedback = await MentorAppointment.find({
+      status: 'completed',
+      rating: { $exists: true }
+    }).populate('userId', 'name').populate('mentorId', 'name');
+    
+    res.json(feedback);
+  } catch (error) {
+    console.error('Error fetching feedback:', error);
+    res.status(500).json({ message: 'Server Error', error: error.message });
   }
 };
