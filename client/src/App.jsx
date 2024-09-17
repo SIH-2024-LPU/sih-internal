@@ -119,6 +119,8 @@ import ChatCareerAdvisor from './Pages/Roadmap/Roadmap';
 import ModernCommunityPage from './Pages/community/community';
 import CoachProfile from './Pages/DashBoard/MentorDashBoard';
 import ScheduleSession from './Pages/MentorShip/BookAppointment';
+import CareerQuiz from './Pages/Quiz/Quiz';
+import CombinedCareerAdvisor from './Pages/Quiz/Prediction';
 
 function App() {
   return (
@@ -147,6 +149,8 @@ function App() {
         <Route path="/roadmap" element={<ChatCareerAdvisor/>}/>
         <Route path="/mentorDashboard" element={<CoachProfile/>}/>
         <Route path='/schedulementor'element={<ScheduleSession/>}/>
+        <Route path="/careerquiz" element={<CareerQuiz/>}/>
+        <Route path="/combinedquiz" element={<CombinedCareerAdvisor/>}/>
         {/* User protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['User', 'Mentor', 'Admin']} />}>
           <Route path="/careerform" element={<CareerForm />} />
