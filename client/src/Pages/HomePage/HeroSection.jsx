@@ -18,6 +18,10 @@ export default function HeroSection() {
     { title: "Mentorship", desc: "Get Guidance", link: "/mentorship", icon: Users, bgColor: "bg-orange-100" },
   ];
 
+  const handleRedirect = () => {
+    navigate('/roadmap');
+  };
+  
   const handleCardClick = (link) => {
     navigate(link);
   };
@@ -49,7 +53,15 @@ export default function HeroSection() {
             </div>
             <span className="text-gray-600 self-center">Join 1000+ professionals</span>
           </div>
-          <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white">Get Started</Button>
+          {/* <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white">Get Started</Button>
+           */}
+           <Button
+        size="lg"
+        className="bg-indigo-600 hover:bg-indigo-700 text-white"
+        onClick={handleRedirect}
+      >
+        Get Started
+      </Button>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">

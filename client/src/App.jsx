@@ -115,6 +115,10 @@ import AdminDashboard from './Admin/DashBoard';
 import AddResourcePage from './Pages/Resourses/AddResourses';
 import ViewBooksPage from './Pages/Resourses/ViewResourses';
 import MentorFeedback from './Pages/MentorShip/MentoFeedback';
+import ChatCareerAdvisor from './Pages/Roadmap/Roadmap';
+import ModernCommunityPage from './Pages/community/community';
+import CoachProfile from './Pages/DashBoard/MentorDashBoard';
+import ScheduleSession from './Pages/MentorShip/BookAppointment';
 
 function App() {
   return (
@@ -139,6 +143,10 @@ function App() {
         <Route path="/addResources" element={<AddResourcePage/>}/>    {/*Admin*/}
         <Route path ="/viewbooks" element={<ViewBooksPage/>}/>
         <Route path="/userFeedback" element={<MentorFeedback/>}/>
+        <Route path="/community" element={<ModernCommunityPage/>}/>
+        <Route path="/roadmap" element={<ChatCareerAdvisor/>}/>
+        <Route path="/mentorDashboard" element={<CoachProfile/>}/>
+        <Route path='/schedulementor'element={<ScheduleSession/>}/>
         {/* User protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['User', 'Mentor', 'Admin']} />}>
           <Route path="/careerform" element={<CareerForm />} />
