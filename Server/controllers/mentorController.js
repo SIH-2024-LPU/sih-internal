@@ -479,3 +479,62 @@ exports.getAllFeedback = async (req, res) => {
     res.status(500).json({ message: 'Server Error', error: error.message });
   }
 };
+
+
+exports.getMentorData = async (req, res) => {
+  try {
+    const mentorId = req.params.id;
+    const mentor = await User.findById(mentorId).select('-password');
+    if (!mentor) {
+      return res.status(404).json({ message: 'Mentor not found' });
+    }
+    res.json(mentor);
+  } catch (error) {
+    console.error('Error fetching mentor data:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+exports.getMentorAppointments = async (req, res) => {
+  try {
+    const mentorId = req.params.id;
+    const appointments = await MentorAppointment.find({ mentorId })
+      .populate('userId', 'name email')
+      .sort({ scheduledDate: 1 });
+    res.json(appointments);
+  } catch (error) {
+    console.error('Error fetching mentor appointments:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+exports.getMentorNotes = async (req, res) => {
+  try {
+    const mentorId = req.params.id;
+    const mentor = await User.findById(mentorId);
+    if (!mentor) {
+      return res.status(404).json({ message: 'Mentor not found' });
+    }
+    res.json(mentor.notes);
+  } catch (error) {
+    console.error('Error fetching mentor notes:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+exports.addMentorNote = async (req, res) => {
+  try {
+    const { mentorId, content } = req.body;
+    const mentor = await User.findById(mentorId);
+    if (!mentor) {
+      return res.status(404).json({ message: 'Mentor not found' });
+    }
+    const newNote = { content, createdAt: new Date() };
+    mentor.notes.push(newNote);
+    await mentor.save();
+    res.status(201).json(newNote);
+  } catch (error) {
+    console.error('Error adding mentor note:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};

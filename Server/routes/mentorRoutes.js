@@ -20,6 +20,11 @@ router.post('/submit-rating', verifyToken, mentorController.submitRating);
 router.get('/mentor-feedback/:mentorId', verifyToken, mentorController.getMentorFeedback);
 router.get('/all-feedback', mentorController.getAllFeedback);
 
+router.get('/mentors/:id', verifyToken, mentorController.getMentorData);
+router.get('/mentor-appointments/:id', verifyToken, mentorController.getMentorAppointments);
+router.get('/mentor-notes/:id', verifyToken, mentorController.getMentorNotes);
+router.post('/mentor-notes', verifyToken, mentorController.addMentorNote);
+
 
 router.get('/job-titles', async (req, res) => {
     try {
