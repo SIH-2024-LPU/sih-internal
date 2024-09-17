@@ -121,6 +121,10 @@ import CoachProfile from './Pages/DashBoard/MentorDashBoard';
 import ScheduleSession from './Pages/MentorShip/BookAppointment';
 import CareerQuiz from './Pages/Quiz/Quiz';
 import CombinedCareerAdvisor from './Pages/Quiz/Prediction';
+import Profile from './Pages/Profile/Profile';
+import RecommendationJobTitlesSearch from './Pages/Recommendation/JobTitle';
+import JobInfo from './Pages/Recommendation/jobinfo';
+import ChatBot from './Bots/chatbot';
 
 function App() {
   return (
@@ -151,6 +155,9 @@ function App() {
         <Route path='/schedulementor'element={<ScheduleSession/>}/>
         <Route path="/careerquiz" element={<CareerQuiz/>}/>
         <Route path="/combinedquiz" element={<CombinedCareerAdvisor/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/jobtitleall' element={<RecommendationJobTitlesSearch/>}/>
+        <Route path="/job-details" element={<JobInfo/>}/>
         {/* User protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['User', 'Mentor', 'Admin']} />}>
           <Route path="/careerform" element={<CareerForm />} />
@@ -182,6 +189,7 @@ function App() {
         {/* Catch-all route for 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ChatBot/>
     </>
   );
 }

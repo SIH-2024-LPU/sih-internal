@@ -269,4 +269,21 @@ router.get('/job/strengths', async (req, res) => {
   }
 });
 
+router.get('/recommendations/job-titles', async (req, res) => {
+  try {
+    console.log('Fetching job titles...');
+    const jobTitles = await Recommendation.distinct('jobTitle');
+    console.log('Retrieved job titles:', jobTitles);
+    
+    if (jobTitles.length === 0) {
+      console.log('No job titles found in the database.');
+    }
+    
+    res.json(jobTitles);
+  } catch (error) {
+    console.error('Error fetching job titles:', error);
+    res.status(500).json({ message: 'Error fetching job titles', error: error.message });
+  }
+});
+
 module.exports = router;

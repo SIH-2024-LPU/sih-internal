@@ -14,6 +14,7 @@ const recommendationRoutes = require('./routes/Recommendation');
 const workshopRoutes = require('./routes/workshopRoutes');
 const resourceRoutes = require('./routes/resourceRoutes');
 const communityRoutes = require('./routes/communityRoutes');
+const profileRoutes = require('./routes/profileRoutes'); 
 const path = require('path');
 require("dotenv").config();
 
@@ -50,7 +51,7 @@ app.use('/api/job', strengthRoutes);
 app.use('/api/job', skillsRoutes);
 app.use('/api/workshops', workshopRoutes);
 app.use('/api', resourceRoutes);
-
+app.use('/api/profile', profileRoutes); 
 app.use('/api', communityRoutes);
 
 // app.post("/api/gemini-suggestion", async (req, res) => {

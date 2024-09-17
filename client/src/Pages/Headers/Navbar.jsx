@@ -309,11 +309,37 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
+  // const navItems = [
+  //   { name: 'Home', path: '/', icon: Home },
+  //   { name: 'Predict', path: '/recommendation', icon: Brain },
+  //   { name: 'Mentorship', path: '/mentorship', icon: Users },
+  //   { name: 'Program', path: '/application', icon: Users },
+  // ]
+
+  // const dropdownItems = {
+  //   User: [
+  //     { name: 'Profile', path: '/profile', icon: Settings },
+  //     { name: 'My Applications', path: '/my-applications', icon: FileText },
+  //   ],
+  //   Mentor: [
+  //     { name: 'Profile', path: '/profile', icon: Settings },
+  //     { name: 'My Sessions', path: '/my-sessions', icon: Video },
+  //     { name: 'Resources', path: '/resources', icon: BookOpen },
+  //   ],
+  //   Admin: [
+  //     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
+  //     { name: 'Manage Users', path: '/manage-users', icon: Users },
+  //     { name: 'Reports', path: '/reports', icon: FileText },
+  //   ],
+  // }
+
   const navItems = [
     { name: 'Home', path: '/', icon: Home },
-    { name: 'Predict', path: '/recommendation', icon: Brain },
+    { name: 'Roadmap', path: '/combinedquiz', icon: Users },
+    // { name: 'Roadmap', path: '/roadmap', icon: Brain },
     { name: 'Mentorship', path: '/mentorship', icon: Users },
-    { name: 'Program', path: '/application', icon: Users },
+    { name: 'Workshop', path: '/workshops', icon: Users },
+    { name: 'Community', path: '/community', icon: Users },
   ]
 
   const dropdownItems = {
@@ -332,6 +358,7 @@ export default function Navbar() {
       { name: 'Reports', path: '/reports', icon: FileText },
     ],
   }
+
 
   return (
     <nav className="bg-gradient-to-r from-blue-50 to-indigo-100 shadow-md">
