@@ -7,6 +7,7 @@ const config = {
     //  API_BASE_URL1: '  http://localhost:3001',
      API_BASE_URL: 'https://sih-server-production.up.railway.app/api',
      API_BASE_URL1: 'https://sih-server-production.up.railway.app'
+     //Hello world 
     // For example:
     // MAX_FILE_SIZE: 5242880, // 5MB in bytes
     // SUPPORTED_FILE_TYPES: ['jpg', 'png', 'pdf'],
