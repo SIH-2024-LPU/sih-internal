@@ -21,7 +21,7 @@ router.get('/mentor-feedback/:mentorId', verifyToken, mentorController.getMentor
 router.get('/all-feedback', mentorController.getAllFeedback);
 
 router.get('/mentors/:id', verifyToken, mentorController.getMentorData);
-router.get('/mentor-appointments/:id', verifyToken, mentorController.getMentorAppointments);
+//router.get('/mentor-appointments/:id', verifyToken, mentorController.getMentorAppointments);
 router.get('/mentor-notes/:id', verifyToken, mentorController.getMentorNotes);
 router.post('/mentor-notes', verifyToken, mentorController.addMentorNote);
 

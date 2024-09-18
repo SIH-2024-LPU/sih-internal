@@ -217,150 +217,6 @@
 
 
 
-// import React, { useState, useEffect, useRef } from 'react';
-// import axios from 'axios';
-// import { motion } from 'framer-motion';
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-// import { Button } from "@/components/ui/button";
-// import { Card, CardContent, CardFooter } from "@/components/ui/card";
-// import { Input } from "@/components/ui/input";
-// import { MessageCircle, ThumbsUp, Send } from 'lucide-react';
-// import { format } from 'date-fns';
-// import config from '../../config';
-
-// export default function TwitterLikeCommunityPage() {
-//   const [posts, setPosts] = useState([]);
-//   const [newPostContent, setNewPostContent] = useState('');
-//   const [user, setUser] = useState(null);
-//   const scrollRef = useRef(null);
-
-//   useEffect(() => {
-//     fetchPosts();
-//     fetchUserData();
-//   }, []);
-
-//   useEffect(() => {
-//     if (scrollRef.current) {
-//       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-//     }
-//   }, [posts]);
-
-//   const fetchPosts = async () => {
-//     try {
-//       const response = await axios.get(`${config.API_BASE_URL}/posts`, {
-//         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-//       });
-//       setPosts(response.data);
-//     } catch (error) {
-//       console.error('Error fetching posts:', error);
-//     }
-//   };
-
-//   const fetchUserData = async () => {
-//     try {
-//       const response = await axios.get(`${config.API_BASE_URL}/auth/me`, {
-//         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-//       });
-//       setUser(response.data);
-//     } catch (error) {
-//       console.error('Error fetching user data:', error);
-//     }
-//   };
-
-//   const addNewPost = async () => {
-//     if (newPostContent.trim() === '') return;
-//     try {
-//       await axios.post(`${config.API_BASE_URL}/posts`, 
-//         { content: newPostContent },
-//         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-//       );
-//       setNewPostContent('');
-//       fetchPosts();
-//     } catch (error) {
-//       console.error('Error adding new post:', error);
-//     }
-//   };
-
-//   const toggleLike = async (postId) => {
-//     try {
-//       await axios.post(`${config.API_BASE_URL}/posts/${postId}/like`, {}, {
-//         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-//       });
-//       fetchPosts();
-//     } catch (error) {
-//       console.error('Error toggling like:', error);
-//     }
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
-//       <div className="max-w-2xl mx-auto">
-//         <h1 className="text-3xl font-bold text-center mb-6 text-gray-900 dark:text-white">Community Feed</h1>
-//         <Card className="mb-4 p-4 bg-white dark:bg-gray-800">
-//           <div className="flex items-center space-x-4">
-//             <Avatar className="h-10 w-10">
-//               <AvatarImage src={user?.imageUrl} alt={user?.name} />
-//               <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
-//             </Avatar>
-//             <Input
-//               value={newPostContent}
-//               onChange={(e) => setNewPostContent(e.target.value)}
-//               placeholder="What's happening?"
-//               className="flex-grow"
-//             />
-//           </div>
-//           <Button onClick={addNewPost} className="w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white">
-//             Post
-//           </Button>
-//         </Card>
-//         <div ref={scrollRef} className="space-y-4 overflow-y-auto max-h-[calc(100vh-250px)]">
-//           {posts.map((post) => (
-//             <motion.div
-//               key={post._id}
-//               initial={{ opacity: 0, y: 20 }}
-//               animate={{ opacity: 1, y: 0 }}
-//               transition={{ duration: 0.3 }}
-//             >
-//               <Card className="bg-white dark:bg-gray-800">
-//                 <CardContent className="pt-4">
-//                   <div className="flex items-center space-x-4 mb-2">
-//                     <Avatar className="h-10 w-10">
-//                       <AvatarImage src={post.author.imageUrl} alt={post.author.name} />
-//                       <AvatarFallback>{post.author.name[0]}</AvatarFallback>
-//                     </Avatar>
-//                     <div>
-//                       <p className="font-semibold text-gray-900 dark:text-white">{post.author.name}</p>
-//                       <p className="text-sm text-gray-500 dark:text-gray-400">
-//                         {format(new Date(post.createdAt), 'MMM d, yyyy')}
-//                       </p>
-//                     </div>
-//                   </div>
-//                   <p className="text-gray-700 dark:text-gray-300">{post.content}</p>
-//                 </CardContent>
-//                 <CardFooter className="flex justify-between pt-2">
-//                   <Button variant="ghost" size="sm" onClick={() => toggleLike(post._id)} 
-//                     className={`text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 ${
-//                       post.likes.includes(user?._id) ? 'text-blue-600 dark:text-blue-400' : ''
-//                     }`}
-//                   >
-//                     <ThumbsUp className="mr-2 h-4 w-4" />
-//                     {post.likes.length} Likes
-//                   </Button>
-//                   <Button variant="ghost" size="sm" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
-//                     <MessageCircle className="mr-2 h-4 w-4" />
-//                     {post.comments.length} Comments
-//                   </Button>
-//                 </CardFooter>
-//               </Card>
-//             </motion.div>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
@@ -377,14 +233,11 @@ export default function TwitterLikeCommunityPage() {
   const [newPostContent, setNewPostContent] = useState('');
   const [user, setUser] = useState(null);
   const scrollRef = useRef(null);
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
     fetchPosts();
-    if (token) {
-      fetchUserData();
-    }
-  }, [token]);
+    fetchUserData();
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -394,7 +247,9 @@ export default function TwitterLikeCommunityPage() {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get(`${config.API_BASE_URL}/posts`);
+      const response = await axios.get(`${config.API_BASE_URL}/posts`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
       setPosts(response.data);
     } catch (error) {
       console.error('Error fetching posts:', error);
@@ -404,7 +259,7 @@ export default function TwitterLikeCommunityPage() {
   const fetchUserData = async () => {
     try {
       const response = await axios.get(`${config.API_BASE_URL}/auth/me`, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setUser(response.data);
     } catch (error) {
@@ -413,15 +268,11 @@ export default function TwitterLikeCommunityPage() {
   };
 
   const addNewPost = async () => {
-    if (!token) {
-      alert('Please log in to post.');
-      return;
-    }
     if (newPostContent.trim() === '') return;
     try {
       await axios.post(`${config.API_BASE_URL}/posts`, 
         { content: newPostContent },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
       setNewPostContent('');
       fetchPosts();
@@ -431,13 +282,9 @@ export default function TwitterLikeCommunityPage() {
   };
 
   const toggleLike = async (postId) => {
-    if (!token) {
-      alert('Please log in to like posts.');
-      return;
-    }
     try {
       await axios.post(`${config.API_BASE_URL}/posts/${postId}/like`, {}, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       fetchPosts();
     } catch (error) {
@@ -449,30 +296,23 @@ export default function TwitterLikeCommunityPage() {
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-3xl font-bold text-center mb-6 text-gray-900 dark:text-white">Community Feed</h1>
-        {token && (
-          <Card className="mb-4 p-4 bg-white dark:bg-gray-800">
-            <div className="flex items-center space-x-4">
-              <Avatar className="h-10 w-10">
-                <AvatarImage src={user?.imageUrl} alt={user?.name} />
-                <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
-              </Avatar>
-              <Input
-                value={newPostContent}
-                onChange={(e) => setNewPostContent(e.target.value)}
-                placeholder="What's happening?"
-                className="flex-grow"
-              />
-            </div>
-            <Button onClick={addNewPost} className="w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white">
-              Post
-            </Button>
-          </Card>
-        )}
-        {!token && (
-          <Card className="mb-4 p-4 bg-white dark:bg-gray-800">
-            <p className="text-center text-gray-700 dark:text-gray-300">Please log in to create posts and like content.</p>
-          </Card>
-        )}
+        <Card className="mb-4 p-4 bg-white dark:bg-gray-800">
+          <div className="flex items-center space-x-4">
+            <Avatar className="h-10 w-10">
+              <AvatarImage src={user?.imageUrl} alt={user?.name} />
+              <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
+            </Avatar>
+            <Input
+              value={newPostContent}
+              onChange={(e) => setNewPostContent(e.target.value)}
+              placeholder="What's happening?"
+              className="flex-grow"
+            />
+          </div>
+          <Button onClick={addNewPost} className="w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white">
+            Post
+          </Button>
+        </Card>
         <div ref={scrollRef} className="space-y-4 overflow-y-auto max-h-[calc(100vh-250px)]">
           {posts.map((post) => (
             <motion.div
@@ -498,14 +338,10 @@ export default function TwitterLikeCommunityPage() {
                   <p className="text-gray-700 dark:text-gray-300">{post.content}</p>
                 </CardContent>
                 <CardFooter className="flex justify-between pt-2">
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    onClick={() => toggleLike(post._id)} 
+                  <Button variant="ghost" size="sm" onClick={() => toggleLike(post._id)} 
                     className={`text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 ${
                       post.likes.includes(user?._id) ? 'text-blue-600 dark:text-blue-400' : ''
                     }`}
-                    disabled={!token}
                   >
                     <ThumbsUp className="mr-2 h-4 w-4" />
                     {post.likes.length} Likes
@@ -523,3 +359,167 @@ export default function TwitterLikeCommunityPage() {
     </div>
   );
 }
+
+
+// import React, { useState, useEffect, useRef } from 'react';
+// import axios from 'axios';
+// import { motion } from 'framer-motion';
+// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+// import { Button } from "@/components/ui/button";
+// import { Card, CardContent, CardFooter } from "@/components/ui/card";
+// import { Input } from "@/components/ui/input";
+// import { MessageCircle, ThumbsUp, Send } from 'lucide-react';
+// import { format } from 'date-fns';
+// import config from '../../config';
+
+// export default function TwitterLikeCommunityPage() {
+//   const [posts, setPosts] = useState([]);
+//   const [newPostContent, setNewPostContent] = useState('');
+//   const [user, setUser] = useState(null);
+//   const scrollRef = useRef(null);
+//   const token = localStorage.getItem('token');
+
+//   useEffect(() => {
+//     fetchPosts();
+//     if (token) {
+//       fetchUserData();
+//     }
+//   }, [token]);
+
+//   useEffect(() => {
+//     if (scrollRef.current) {
+//       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+//     }
+//   }, [posts]);
+
+//   const fetchPosts = async () => {
+//     try {
+//       const response = await axios.get(`${config.API_BASE_URL}/posts`);
+//       setPosts(response.data);
+//     } catch (error) {
+//       console.error('Error fetching posts:', error);
+//     }
+//   };
+
+//   const fetchUserData = async () => {
+//     try {
+//       const response = await axios.get(`${config.API_BASE_URL}/auth/me`, {
+//         headers: { Authorization: `Bearer ${token}` }
+//       });
+//       setUser(response.data);
+//     } catch (error) {
+//       console.error('Error fetching user data:', error);
+//     }
+//   };
+
+//   const addNewPost = async () => {
+//     if (!token) {
+//       alert('Please log in to post.');
+//       return;
+//     }
+//     if (newPostContent.trim() === '') return;
+//     try {
+//       await axios.post(`${config.API_BASE_URL}/posts`, 
+//         { content: newPostContent },
+//         { headers: { Authorization: `Bearer ${token}` } }
+//       );
+//       setNewPostContent('');
+//       fetchPosts();
+//     } catch (error) {
+//       console.error('Error adding new post:', error);
+//     }
+//   };
+
+//   const toggleLike = async (postId) => {
+//     if (!token) {
+//       alert('Please log in to like posts.');
+//       return;
+//     }
+//     try {
+//       await axios.post(`${config.API_BASE_URL}/posts/${postId}/like`, {}, {
+//         headers: { Authorization: `Bearer ${token}` }
+//       });
+//       fetchPosts();
+//     } catch (error) {
+//       console.error('Error toggling like:', error);
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
+//       <div className="max-w-2xl mx-auto">
+//         <h1 className="text-3xl font-bold text-center mb-6 text-gray-900 dark:text-white">Community Feed</h1>
+//         {token && (
+//           <Card className="mb-4 p-4 bg-white dark:bg-gray-800">
+//             <div className="flex items-center space-x-4">
+//               <Avatar className="h-10 w-10">
+//                 <AvatarImage src={user?.imageUrl} alt={user?.name} />
+//                 <AvatarFallback>{user?.name?.[0]}</AvatarFallback>
+//               </Avatar>
+//               <Input
+//                 value={newPostContent}
+//                 onChange={(e) => setNewPostContent(e.target.value)}
+//                 placeholder="What's happening?"
+//                 className="flex-grow"
+//               />
+//             </div>
+//             <Button onClick={addNewPost} className="w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white">
+//               Post
+//             </Button>
+//           </Card>
+//         )}
+//         {!token && (
+//           <Card className="mb-4 p-4 bg-white dark:bg-gray-800">
+//             <p className="text-center text-gray-700 dark:text-gray-300">Please log in to create posts and like content.</p>
+//           </Card>
+//         )}
+//         <div ref={scrollRef} className="space-y-4 overflow-y-auto max-h-[calc(100vh-250px)]">
+//           {posts.map((post) => (
+//             <motion.div
+//               key={post._id}
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.3 }}
+//             >
+//               <Card className="bg-white dark:bg-gray-800">
+//                 <CardContent className="pt-4">
+//                   <div className="flex items-center space-x-4 mb-2">
+//                     <Avatar className="h-10 w-10">
+//                       <AvatarImage src={post.author.imageUrl} alt={post.author.name} />
+//                       <AvatarFallback>{post.author.name[0]}</AvatarFallback>
+//                     </Avatar>
+//                     <div>
+//                       <p className="font-semibold text-gray-900 dark:text-white">{post.author.name}</p>
+//                       <p className="text-sm text-gray-500 dark:text-gray-400">
+//                         {format(new Date(post.createdAt), 'MMM d, yyyy')}
+//                       </p>
+//                     </div>
+//                   </div>
+//                   <p className="text-gray-700 dark:text-gray-300">{post.content}</p>
+//                 </CardContent>
+//                 <CardFooter className="flex justify-between pt-2">
+//                   <Button 
+//                     variant="ghost" 
+//                     size="sm" 
+//                     onClick={() => toggleLike(post._id)} 
+//                     className={`text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 ${
+//                       post.likes.includes(user?._id) ? 'text-blue-600 dark:text-blue-400' : ''
+//                     }`}
+//                     disabled={!token}
+//                   >
+//                     <ThumbsUp className="mr-2 h-4 w-4" />
+//                     {post.likes.length} Likes
+//                   </Button>
+//                   <Button variant="ghost" size="sm" className="text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400">
+//                     <MessageCircle className="mr-2 h-4 w-4" />
+//                     {post.comments.length} Comments
+//                   </Button>
+//                 </CardFooter>
+//               </Card>
+//             </motion.div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }

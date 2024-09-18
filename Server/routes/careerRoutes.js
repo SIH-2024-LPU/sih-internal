@@ -9,6 +9,8 @@ router.get('/options', careerController.getInterestsAndStrengths);
 router.post('/suggestions', careerController.getCareerSuggestions);
 router.get('/job-titles', careerController.getAllJobTitles);
 router.get('/suggestion', careerController.getCareerSuggestion);
+router.get('/check-job-title', careerController.checkJobTitleExists);
+
 
 router.post('/', careerController.createCareer);
 router.put('/:id', careerController.updateCareer);

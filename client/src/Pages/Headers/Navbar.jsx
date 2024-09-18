@@ -565,16 +565,21 @@ export default function Navbar() {
     User: [
       { name: 'Profile', path: '/profile' },
       { name: 'My Applications', path: '/my-applications' },
+      { name: 'Resources', path: '/view-books' },
+      {name: 'Workshops',path:'/workshops' }
     ],
     Mentor: [
-      { name: 'Profile', path: '/profile' },
+      { name: 'Profile', path: '/mentorDashboard' },
       { name: 'My Sessions', path: '/my-sessions' },
       { name: 'Resources', path: '/view-books' },
+      { name: 'Mentor Training', path :'/learnlist'},
     ],
     Admin: [
       { name: 'Dashboard', path: '/dashboardAdmin' },
       { name: 'Manage Users', path: '/manage-users' },
       { name: 'Reports', path: '/reports' },
+      {name: "Main",path:"/dashboard"},
+      {name: "Feedback",path:"/userFeedback"}
     ],
   }
 

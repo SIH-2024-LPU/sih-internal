@@ -78,7 +78,7 @@
 
 
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Router } from 'react-router-dom';
 import Home from './Pages/Home';
 import Recommendation from './Pages/Recommendation/Recommendation';
 import JobDetails from './Pages/Recommendation/RecommDetails';
@@ -128,6 +128,8 @@ import ChatBot from './Bots/chatbot';
 import FrontendRoadmap from './Roadmap/Frontend';
 import MentoHome from './Pages/MentoHome';
 import Footer from './Pages/Headers/Footer';
+import DummyJobInfo from './Pages/Recommendation/DummyInfo';
+import MentorshipPage from './Pages/Mentor Home/HomePage';
 
 function App() {
   return (
@@ -163,6 +165,8 @@ function App() {
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/jobtitleall' element={<RecommendationJobTitlesSearch/>}/>
         <Route path="/job-details" element={<JobInfo/>}/>
+        <Route path="/dummyinfo" element={<DummyJobInfo/>}/>
+        <Route path ="/mentorHome" element={<MentorshipPage/>}/>
         {/* User protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['User', 'Mentor', 'Admin']} />}>
           <Route path="/careerform" element={<CareerForm />} />
@@ -194,7 +198,7 @@ function App() {
         {/* Catch-all route for 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <ChatBot/>
+      {/* <ChatBot/> */}
       <Footer/>
     </>
   );

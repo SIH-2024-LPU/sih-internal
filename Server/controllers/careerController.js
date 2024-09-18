@@ -220,3 +220,16 @@ exports.getCareerSuggestions = async (req, res) => {
       res.status(500).json({ error: 'An error occurred while fetching career suggestions' });
     }
   };
+
+
+  exports.checkJobTitleExists = async (req, res) => {
+    try {
+      const { jobTitle } = req.query;
+      console.log(jobTitle)
+      const career = await Career.findOne({ jobTitle: { $regex: new RegExp('^' + jobTitle + '$', 'i') } });
+      res.json({ exists: !!career });
+    } catch (error) {
+      console.error('Error checking job title:', error);
+      res.status(500).json({ error: 'An error occurred while checking the job title' });
+    }
+  };

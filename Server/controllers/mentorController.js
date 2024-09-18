@@ -495,18 +495,18 @@ exports.getMentorData = async (req, res) => {
   }
 };
 
-exports.getMentorAppointments = async (req, res) => {
-  try {
-    const mentorId = req.params.id;
-    const appointments = await MentorAppointment.find({ mentorId })
-      .populate('userId', 'name email')
-      .sort({ scheduledDate: 1 });
-    res.json(appointments);
-  } catch (error) {
-    console.error('Error fetching mentor appointments:', error);
-    res.status(500).json({ message: 'Server Error' });
-  }
-};
+// exports.getMentorAppointments = async (req, res) => {
+//   try {
+//     const mentorId = req.params.id;
+//     const appointments = await MentorAppointment.find({ mentorId })
+//       .populate('userId', 'name email')
+//       .sort({ scheduledDate: 1 });
+//     res.json(appointments);
+//   } catch (error) {
+//     console.error('Error fetching mentor appointments:', error);
+//     res.status(500).json({ message: 'Server Error' });
+//   }
+// };
 
 exports.getMentorNotes = async (req, res) => {
   try {
