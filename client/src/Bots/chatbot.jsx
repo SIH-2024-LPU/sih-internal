@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function ChatBot() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,6 +23,7 @@ export default function ChatBot() {
     if (type === 'roadmap' || type === 'mentorship') {
       // Handle navigation or specific actions for these options
       console.log(`Navigating to ${type}`);
+      
     } else if (type === 'other') {
       startChat('other');
     }
@@ -84,7 +86,7 @@ export default function ChatBot() {
   return (
     <>
       <div className="fixed bottom-6 right-6">
-        <Button onClick={toggleModal} className="flex items-center bg-pink-500 hover:bg-pink-600 text-white rounded-full p-4 shadow-lg">
+        <Button onClick={toggleModal} className="flex items-center bg-pink-500 hover:bg-pink-600 text-white rounded-full p-4 shadow-lg z-100">
           <MessageCircle className="w-6 h-6 mr-2" />
           <span className="font-semibold">Chat</span>
         </Button>
@@ -94,8 +96,13 @@ export default function ChatBot() {
         <div className="fixed bottom-24 right-6 w-72 bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="bg-pink-500 text-white p-3">How can we help you?</div>
           <div className="p-3 space-y-2">
-            <button onClick={() => handleOptionClick('roadmap')} className="w-full p-2 bg-gray-100 rounded">Get Roadmap</button>
+            <Link to="/combinedquiz">
+              <button onClick={() => handleOptionClick('roadmap')} className="w-full p-2 bg-gray-100 rounded">Get Roadmap</button>
+            </Link>
+
+            <Link to="/mentorship">
             <button onClick={() => handleOptionClick('mentorship')} className="w-full p-2 bg-gray-100 rounded">Get Mentorship</button>
+            </Link>
             <button onClick={() => handleOptionClick('other')} className="w-full p-2 bg-gray-100 rounded">Other Query</button>
           </div>
         </div>

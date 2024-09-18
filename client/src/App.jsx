@@ -139,11 +139,13 @@ function App() {
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<SignupForm />} />
-        <Route path="/recommendation" element={<Recommendation />} />
-        <Route path="/job-details/:jobTitle" element={<JobDetails />} />
-        <Route path='/Learn' element={<VideoForm/>}/>
+        <Route path="/login" status="done" element={<LoginForm />} /> 
+        <Route path="/signup" status="done" element={<SignupForm />} />
+        {/* <Route path="/recommendation" element={<Recommendation />} /> */}
+        <Route path="/job-details/:jobTitle" status="pending" element={<JobDetails />} />
+
+        {/* //videos added by admin  */}
+        <Route path='/Learn' status="done" element={<VideoForm/>}/>
         <Route path ="/learnlist" element={<VideoList/>}/>
         <Route path="/mentorship" element={<MentorList />} />
         <Route path='/question' element={<CareerRecommendationForm/>}/>
