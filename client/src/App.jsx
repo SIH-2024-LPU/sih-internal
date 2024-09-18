@@ -125,6 +125,9 @@ import Profile from './Pages/Profile/Profile';
 import RecommendationJobTitlesSearch from './Pages/Recommendation/JobTitle';
 import JobInfo from './Pages/Recommendation/jobinfo';
 import ChatBot from './Bots/chatbot';
+import FrontendRoadmap from './Roadmap/Frontend';
+import MentoHome from './Pages/MentoHome';
+import Footer from './Pages/Headers/Footer';
 
 function App() {
   return (
@@ -147,12 +150,14 @@ function App() {
         <Route path="/workshops"element={<AvailableWorkshops/>}/>
         <Route path='/dashboardAdmin' element={<AdminDashboard/>}/>   {/*Admin*/}
         <Route path="/addResources" element={<AddResourcePage/>}/>    {/*Admin*/}
-        <Route path ="/viewbooks" element={<ViewBooksPage/>}/>
-        <Route path="/userFeedback" element={<MentorFeedback/>}/>
+        <Route path ="/view-books" element={<ViewBooksPage/>}/>
+        <Route path="/userFeedback" element={<MentorFeedback/>}/>    {/*Admin*/}
         <Route path="/community" element={<ModernCommunityPage/>}/>
-        <Route path="/roadmap" element={<ChatCareerAdvisor/>}/>
-        <Route path="/mentorDashboard" element={<CoachProfile/>}/>
+        <Route path="/roadmap" element={<FrontendRoadmap/>}/>
+        <Route path="/mentorDashboard" element={<CoachProfile/>}/>      {/*Mentor*/}
         <Route path='/schedulementor'element={<ScheduleSession/>}/>
+        <Route path ="/mentor" element={<MentoHome/>}/>
+        <Route path="/frontend" element={<FrontendRoadmap/>}/>
         <Route path="/careerquiz" element={<CareerQuiz/>}/>
         <Route path="/combinedquiz" element={<CombinedCareerAdvisor/>}/>
         <Route path='/profile' element={<Profile/>}/>
@@ -190,6 +195,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ChatBot/>
+      <Footer/>
     </>
   );
 }

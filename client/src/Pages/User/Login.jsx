@@ -233,9 +233,9 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex bg-gray-100">
       {/* Left side with background and text */}
-      <div className="hidden lg:flex lg:w-1/2 bg-cover bg-center" style={{backgroundImage: "url('/api/placeholder/1200/800')"}}>
-        <div className="w-full flex flex-col justify-center items-center bg-black bg-opacity-50 p-12">
-          <motion.div
+      <div className="hidden lg:flex lg:w-1/2 bg-cover bg-center" style={{backgroundImage: "url('/login.jpg')"}}>
+        <div className="w-full flex flex-col justify-center items-center  bg-opacity-50 p-12">
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -249,7 +249,7 @@ export default function LoginPage() {
               <li className="mb-2">Access to exclusive job opportunities</li>
               <li>Comprehensive industry insights</li>
             </ul>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
 
