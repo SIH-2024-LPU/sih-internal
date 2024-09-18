@@ -212,6 +212,25 @@ export default function LoginPage() {
     setForm(prev => ({ ...prev, [name]: value }))
   }
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   setIsLoading(true)
+  //   try {
+  //     const { data } = await axios.post(`${config.API_BASE_URL}/auth/login`, form)
+  //     localStorage.setItem('token', data.token)
+  //     localStorage.setItem('role', data.role)
+  //     setIsAuthenticated(true)
+  //     setRole(data.role)
+  //     toast.success("Login successful! Welcome to the Spark Career Guidance Portal.")
+  //     window.location.href = '/'
+  //   } catch (error) {
+  //     toast.error("Login failed. Please check your credentials and try again.")
+  //   } finally {
+  //     setIsLoading(false)
+  //   }
+  // }
+
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
@@ -222,7 +241,13 @@ export default function LoginPage() {
       setIsAuthenticated(true)
       setRole(data.role)
       toast.success("Login successful! Welcome to the Spark Career Guidance Portal.")
-      window.location.href = '/'
+      
+      // Redirect based on role
+      if (data.role === 'Mentor' || data.role === 'Admin') {
+        window.location.href = '/AMdashboard'
+      } else {
+        window.location.href = '/'
+      }
     } catch (error) {
       toast.error("Login failed. Please check your credentials and try again.")
     } finally {

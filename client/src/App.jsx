@@ -124,12 +124,14 @@ import CombinedCareerAdvisor from './Pages/Quiz/Prediction';
 import Profile from './Pages/Profile/Profile';
 import RecommendationJobTitlesSearch from './Pages/Recommendation/JobTitle';
 import JobInfo from './Pages/Recommendation/jobinfo';
-import ChatBot from './Bots/chatbot';
 import FrontendRoadmap from './Roadmap/Frontend';
 import MentoHome from './Pages/MentoHome';
 import Footer from './Pages/Headers/Footer';
+import chatbot from './Bots/chatbot'
 import DummyJobInfo from './Pages/Recommendation/DummyInfo';
 import MentorshipPage from './Pages/Mentor Home/HomePage';
+import AMDashboard from './Pages/DashBoard/AdminMento';
+import ChatBot from './Bots/chatbot';
 
 function App() {
   return (
@@ -164,7 +166,7 @@ function App() {
         <Route path="/combinedquiz" element={<CombinedCareerAdvisor/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/jobtitleall' element={<RecommendationJobTitlesSearch/>}/>
-        <Route path="/job-details" element={<JobInfo/>}/>
+        <Route path="/job-info" element={<JobInfo/>}/>
         <Route path="/dummyinfo" element={<DummyJobInfo/>}/>
         <Route path ="/mentorHome" element={<MentorshipPage/>}/>
         {/* User protected routes */}
@@ -175,6 +177,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
          
           <Route path="/my-applications" element={<UserAppointments />} />
+          
         </Route>
 
         {/* Mentor protected routes */}
@@ -182,6 +185,7 @@ function App() {
           <Route path="/my-sessions" element={<MentorAppointments />} />
           <Route path="/interestForm" element={<InterestManagement/>}/>
           <Route path='/StrengthForm' element={<StrengthManagement/>}/>
+          <Route path='/AMDashboard'element={<AMDashboard/>}/>
           <Route path='/skillform' element={<SkillsManagement/>}/>
           <Route path='/collegeform'element={<CollegesManagement/>}/>
           <Route path ="/recommendationForm"element={<RecommendationForm/>}/>
@@ -199,6 +203,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       {/* <ChatBot/> */}
+      <ChatBot/>
       <Footer/>
     </>
   );

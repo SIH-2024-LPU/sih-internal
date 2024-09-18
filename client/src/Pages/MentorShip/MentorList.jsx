@@ -762,7 +762,7 @@ const MentorList = () => {
 
   return (
     <div className="bg-gradient-to-br from-indigo-50 to-blue-50 min-h-screen p-8">
-      <h2 className="text-4xl font-bold mb-8 text-indigo-800">Mentorship Program</h2>
+      <h2 className="text-4xl font-bold mb-8 text-gray-800">Mentorship Program</h2>
       <div className="flex flex-col md:flex-row gap-8">
         <div className="md:w-3/4">
           <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
@@ -790,7 +790,7 @@ const MentorList = () => {
             {filteredMentors.length > 0 ? (
               filteredMentors.map((mentor) => (
                 <Card key={mentor._id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-                  <CardHeader className="bg-indigo-900 p-4">
+                  <CardHeader className="bg-gray-900 p-4">
                     <div className="flex items-center">
                       <Avatar className="w-12 h-12 mr-4">
                         <AvatarImage src={mentor.imageUrl || "/mentor-placeholder.png"} alt={`${mentor.name}'s avatar`} />
@@ -802,7 +802,7 @@ const MentorList = () => {
                   <CardContent className="p-4">
                     <p className="text-sm text-gray-600 mb-2">Job Title: {mentor.jobTitle}</p>
                     <p className="text-sm text-gray-600 mb-4">Experience: {mentor.experience} years</p>
-                    <Button className="bg-indigo-600 hover:bg-indigo-700 text-white" onClick={() => handleBookAppointment(mentor._id)}>
+                    <Button className="bg-gray-600 hover:bg-gray-700 text-white" onClick={() => handleBookAppointment(mentor._id)}>
                       {user ? 'Book Appointment' : 'Login to Book'}
                     </Button>
                   </CardContent>
@@ -815,7 +815,7 @@ const MentorList = () => {
         </div>
         <div className="md:w-1/4">
           <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
-            <CardHeader className="bg-indigo-900 p-4">
+            <CardHeader className="bg-gray-900 p-4">
               <CardTitle className="text-white text-xl font-bold">Filters</CardTitle>
             </CardHeader>
             <CardContent className="p-4">
@@ -866,7 +866,7 @@ export default MentorList;
 
 
 // import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+// import axios from 'axios';a
 // import { useNavigate } from 'react-router-dom';
 // import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 // import { Button } from "@/components/ui/button";

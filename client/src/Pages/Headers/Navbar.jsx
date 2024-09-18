@@ -584,7 +584,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-gradient-to-r from-blue-50 to-indigo-100 shadow-md">
+    <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -597,7 +597,7 @@ export default function Navbar() {
               <motion.div key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   to={item.path}
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition duration-150 ease-in-out"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-600 hover:bg-indigo-50 transition duration-150 ease-in-out"
                 >
                   {item.name}
                 </Link>
@@ -609,7 +609,7 @@ export default function Navbar() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="ml-4 px-4 py-2 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition duration-150 ease-in-out"
+                  className="ml-4 px-4 py-2 rounded-md text-sm font-medium bg-indigo-100 text-gray-800 hover:bg-indigo-200 transition duration-150 ease-in-out"
                 >
                   {role}
                 </motion.button>
@@ -627,7 +627,7 @@ export default function Navbar() {
                           <Link
                             key={item.name}
                             to={item.path}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                             onClick={() => setIsDropdownOpen(false)}
                           >
                             {item.name}
@@ -640,13 +640,13 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <div className="hidden sm:ml-6 sm:flex sm:items-center">
+<div className="hidden sm:ml-6 sm:flex sm:items-center">
             {!token ? (
               <>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     to="/login"
-                    className="px-4 py-2 rounded-md text-sm font-medium text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 transition duration-150 ease-in-out"
+                    className="px-4 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-700 hover:bg-gray-50 transition duration-150 ease-in-out"
                   >
                     Login
                   </Link>
@@ -654,7 +654,7 @@ export default function Navbar() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     to="/signup"
-                    className="ml-4 px-4 py-2 rounded-md text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition duration-150 ease-in-out"
+                    className="ml-4 px-4 py-2 rounded-md text-sm font-medium bg-gray-900 text-white hover:bg-gray-700 transition duration-150 ease-in-out"
                   >
                     Signup
                   </Link>
@@ -671,10 +671,11 @@ export default function Navbar() {
               </motion.button>
             )}
           </div>
+
           <div className="-mr-2 flex items-center sm:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? (
@@ -705,7 +706,7 @@ export default function Navbar() {
             <Link
               key={item.name}
               to={item.path}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition duration-150 ease-in-out"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-600 hover:bg-gray-50 transition duration-150 ease-in-out"
             >
               {item.name}
             </Link>
@@ -714,7 +715,7 @@ export default function Navbar() {
             <Link
               key={item.name}
               to={item.path}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition duration-150 ease-in-out"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-600 hover:bg-gray-50 transition duration-150 ease-in-out"
             >
               {item.name}
             </Link>
@@ -723,13 +724,13 @@ export default function Navbar() {
             <>
               <Link
                 to="/login"
-                className="block px-3 py-2 rounded-md text-base font-medium text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 transition duration-150 ease-in-out"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-700 hover:bg-gray-50 transition duration-150 ease-in-out"
               >
                 Login
               </Link>
               <Link
                 to="/signup"
-                className="block px-3 py-2 rounded-md text-base font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition duration-150 ease-in-out"
+                className="block px-3 py-2 rounded-md text-base font-medium bg-gray-600 text-white hover:bg-gray-700 transition duration-150 ease-in-out"
               >
                 Signup
               </Link>
