@@ -231,6 +231,32 @@ export default function LoginPage() {
   // }
 
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   setIsLoading(true)
+  //   try {
+  //     const { data } = await axios.post(`${config.API_BASE_URL}/auth/login`, form)
+  //     localStorage.setItem('token', data.token)
+  //     localStorage.setItem('role', data.role)
+  //     setIsAuthenticated(true)
+  //     setRole(data.role)
+  //     toast.success("Login successful! Welcome to the Spark Career Guidance Portal.")
+      
+  //     // Redirect based on role
+  //     if (data.role === 'Mentor' || data.role === 'Admin') {
+  //       window.location.href = '/AMdashboard'
+  //     } else {
+  //       window.location.href = '/'
+  //     }
+  //   } catch (error) {
+  //     toast.error("Login failed. Please check your credentials and try again.")
+  //   } finally {
+  //     setIsLoading(false)
+  //   }
+  // }
+
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
@@ -249,11 +275,15 @@ export default function LoginPage() {
         window.location.href = '/'
       }
     } catch (error) {
-      toast.error("Login failed. Please check your credentials and try again.")
+      // Handle and display the specific error from the backend
+      const errorMessage = error.response?.data?.message || "Login failed. Please check your credentials and try again."
+      toast.error(errorMessage)
+      console.error("Login error:", error.response?.data || error.message)
     } finally {
       setIsLoading(false)
     }
   }
+
 
   return (
     <div className="min-h-screen flex bg-gray-100">
@@ -378,6 +408,7 @@ export default function LoginPage() {
                     <strong>Admin:</strong> xyz<br />
                     <strong>Password:</strong> xyz
                   </div>
+                  <div>You can create your own account ❤️</div>
                 </motion.div>
               )}
             </CardFooter>
