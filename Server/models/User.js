@@ -6,6 +6,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  imageUrl: {
+    type: String,
+    default: '',
+  },
   name: {
     type: String,
     required: true,
@@ -69,7 +73,11 @@ const UserSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: Date.now,
-  }
+  },
+  notes: [{
+    content: String,
+    createdAt: { type: Date, default: Date.now }
+  }]
 });
 
 module.exports = mongoose.model('User', UserSchema);
