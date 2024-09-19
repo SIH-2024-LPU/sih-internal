@@ -50,13 +50,17 @@ import { AuthProvider } from './AuthContext'; // Adjust path as needed
 import './index.css';
 import { NextUIProvider } from '@nextui-org/react';
 
+import { ChakraProvider } from '@chakra-ui/react'
+
 ReactDOM.render(
   <BrowserRouter>
+  <ChakraProvider>
     <NextUIProvider>
       <AuthProvider>
         <App />
       </AuthProvider>
     </NextUIProvider>
+  </ChakraProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );
