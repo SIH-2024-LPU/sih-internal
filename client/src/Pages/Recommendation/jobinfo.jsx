@@ -639,7 +639,7 @@
 
 // export default JobInfo;
 
-import React ,{useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -649,7 +649,7 @@ import config from '../../config'
 import { 
   BookOpen, Sparkles, Building, DollarSign, School, MapPin, 
   TrendingUp, Briefcase, Heart, ChevronLeft, BarChart2, 
-  Code, Coffee, Zap, Clock, Users, Award
+  Code, Coffee, Zap, Clock, Users, Award, Loader
 } from 'lucide-react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
@@ -657,6 +657,7 @@ const JobInfo = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [job, setJob] = useState(null);
+  const [loading, setLoading] = useState(true);
   const jobTitle = location.state?.jobTitle;
 
   useEffect(() => {
@@ -667,6 +668,7 @@ const JobInfo = () => {
 
   const fetchJobDetails = async (title) => {
     try {
+      setLoading(true);
       const response = await fetch(`${config.API_BASE_URL}/job-info/${title}`);
       if (!response.ok) {
         throw new Error('Failed to fetch job details');
@@ -675,10 +677,22 @@ const JobInfo = () => {
       setJob(data);
     } catch (error) {
       console.error('Error fetching job details:', error);
-    // Handle error state
-  }
-};
+      // Handle error state
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8 flex items-center justify-center">
+        <div className="text-center">
+          <Loader className="h-16 w-16 animate-spin text-indigo-600 mx-auto mb-4" />
+          <p className="text-xl font-semibold text-gray-700">Loading job details...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!job) {
     return (
