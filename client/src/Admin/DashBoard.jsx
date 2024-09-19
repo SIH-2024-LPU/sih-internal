@@ -64,8 +64,8 @@ export default function AdminDashboard() {
             G
           </div>
           <div>
-            <h2 className="font-bold text-xl">Githr</h2>
-            <p className="text-gray-500 text-sm">HR Management</p>
+            <h2 className="font-bold text-xl">Admin</h2>
+            <p className="text-gray-500 text-sm">Skill Pilot</p>
           </div>
         </div>
         <nav className="flex-1">
@@ -81,7 +81,7 @@ export default function AdminDashboard() {
         <div className="mt-auto">
           <div className="flex items-center">
             <Avatar className="h-10 w-10">
-              <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Steve Jobs" />
+              <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Admin" />
               <AvatarFallback>SJ</AvatarFallback>
             </Avatar>
             <div className="ml-3">
@@ -181,7 +181,7 @@ export default function AdminDashboard() {
           {/* Status Tracker */}
           <Card>
             <CardHeader>
-              <CardTitle>Status Tracker</CardTitle>
+              <CardTitle> Meeting Tracker</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -221,7 +221,7 @@ export default function AdminDashboard() {
           {/* Course Progress */}
           <Card>
             <CardHeader>
-              <CardTitle>Course Progress</CardTitle>
+              <CardTitle>Training Progress</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center mb-4">
@@ -240,7 +240,7 @@ export default function AdminDashboard() {
           {/* Employee Spotlight */}
           <Card>
             <CardHeader>
-              <CardTitle>Employee Spotlight</CardTitle>
+              <CardTitle>Student Spotlight</CardTitle>
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="overview">

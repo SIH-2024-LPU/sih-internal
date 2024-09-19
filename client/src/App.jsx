@@ -78,7 +78,7 @@
 
 
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Router } from 'react-router-dom';
 import Home from './Pages/Home';
 import Recommendation from './Pages/Recommendation/Recommendation';
 import JobDetails from './Pages/Recommendation/RecommDetails';
@@ -112,6 +112,26 @@ import CareerRecommendationForm from './Pages/Forms/Questions';
 import AddWorkshop from './Pages/Forms/AddWorkshop';
 import AvailableWorkshops from './Pages/Workshops/AvailableWorkshops';
 import AdminDashboard from './Admin/DashBoard';
+import AddResourcePage from './Pages/Resourses/AddResourses';
+import ViewBooksPage from './Pages/Resourses/ViewResourses';
+import MentorFeedback from './Pages/MentorShip/MentoFeedback';
+import ChatCareerAdvisor from './Pages/Roadmap/Roadmap';
+import ModernCommunityPage from './Pages/community/community';
+import CoachProfile from './Pages/DashBoard/MentorDashBoard';
+import ScheduleSession from './Pages/MentorShip/BookAppointment';
+import CareerQuiz from './Pages/Quiz/Quiz';
+import CombinedCareerAdvisor from './Pages/Quiz/Prediction';
+import Profile from './Pages/Profile/Profile';
+import RecommendationJobTitlesSearch from './Pages/Recommendation/JobTitle';
+import JobInfo from './Pages/Recommendation/jobinfo';
+import FrontendRoadmap from './Roadmap/Frontend';
+import MentoHome from './Pages/MentoHome';
+import Footer from './Pages/Headers/Footer';
+import chatbot from './Bots/chatbot'
+import DummyJobInfo from './Pages/Recommendation/DummyInfo';
+import MentorshipPage from './Pages/Mentor Home/HomePage';
+import AMDashboard from './Pages/DashBoard/AdminMento';
+import ChatBot from './Bots/chatbot';
 
 function App() {
   return (
@@ -133,6 +153,22 @@ function App() {
         <Route path='/workshopAdd'element={<AddWorkshop/>}/> {/*Admin*/}
         <Route path="/workshops"element={<AvailableWorkshops/>}/>
         <Route path='/dashboardAdmin' element={<AdminDashboard/>}/>   {/*Admin*/}
+        <Route path="/addResources" element={<AddResourcePage/>}/>    {/*Admin*/}
+        <Route path ="/view-books" element={<ViewBooksPage/>}/>
+        <Route path="/userFeedback" element={<MentorFeedback/>}/>    {/*Admin*/}
+        <Route path="/community" element={<ModernCommunityPage/>}/>
+        <Route path="/roadmap" element={<FrontendRoadmap/>}/>
+        <Route path="/mentorDashboard" element={<CoachProfile/>}/>      {/*Mentor*/}
+        <Route path='/schedulementor'element={<ScheduleSession/>}/>
+        <Route path ="/mentor" element={<MentoHome/>}/>
+        <Route path="/frontend" element={<FrontendRoadmap/>}/>
+        <Route path="/careerquiz" element={<CareerQuiz/>}/>
+        <Route path="/combinedquiz" element={<CombinedCareerAdvisor/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/jobtitleall' element={<RecommendationJobTitlesSearch/>}/>
+        <Route path="/job-info" element={<JobInfo/>}/>
+        <Route path="/dummyinfo" element={<DummyJobInfo/>}/>
+        <Route path ="/mentorHome" element={<MentorshipPage/>}/>
         {/* User protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['User', 'Mentor', 'Admin']} />}>
           <Route path="/careerform" element={<CareerForm />} />
@@ -140,14 +176,16 @@ function App() {
           <Route path="/tracker" element={<ApplicationTracker />} />
           <Route path="/dashboard" element={<Dashboard />} />
          
-          <Route path="/scheduleappointment" element={<UserAppointments />} />
+          <Route path="/my-applications" element={<UserAppointments />} />
+          
         </Route>
 
         {/* Mentor protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['Mentor', 'Admin']} />}>
-          <Route path="/appointment" element={<MentorAppointments />} />
+          <Route path="/my-sessions" element={<MentorAppointments />} />
           <Route path="/interestForm" element={<InterestManagement/>}/>
           <Route path='/StrengthForm' element={<StrengthManagement/>}/>
+          <Route path='/AMDashboard'element={<AMDashboard/>}/>
           <Route path='/skillform' element={<SkillsManagement/>}/>
           <Route path='/collegeform'element={<CollegesManagement/>}/>
           <Route path ="/recommendationForm"element={<RecommendationForm/>}/>
@@ -164,6 +202,9 @@ function App() {
         {/* Catch-all route for 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {/* <ChatBot/> */}
+      <ChatBot/>
+      <Footer/>
     </>
   );
 }

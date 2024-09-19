@@ -1,107 +1,14 @@
 
 // import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
-// import config from '../../config'
-
-// const MentorAppointments = ({ mentorId }) => {
-//   const [appointments, setAppointments] = useState([]);
-
-//   useEffect(() => {
-//     fetchAppointments();
-//   }, [mentorId]);
-
-//   const fetchAppointments = async () => {
-//     try {
-//       const response = await axios.get(`${config.API_BASE_URL}/mentor-appointments/${mentorId}`);
-//       setAppointments(response.data);
-//     } catch (error) {
-//       console.error('Error fetching appointments:', error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>My Appointments</h2>
-//       <ul>
-//         {appointments.map((appointment) => (
-//           <li key={appointment._id}>
-//             <p>User: {appointment.userId.name}</p>
-//             <p>Email: {appointment.userId.email}</p>
-//             <p>Date: {new Date(appointment.date).toLocaleString()}</p>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
-
-// // export default MentorAppointments;
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import config from '../../config';
-// import { useAuth } from '../../AuthContext'; // Import useAuth hook
-
-// const MentorAppointments = () => {
-//   const [appointments, setAppointments] = useState([]);
-//   const [error, setError] = useState(null);
-//   const { user } = useAuth(); // Use the useAuth hook to get the current user
-
-//   useEffect(() => {
-//     if (user && user.role === 'Mentor') {
-//       fetchAppointments(user._id);
-//     } else {
-//       setError('User is not a mentor or not logged in');
-//     }
-//   }, [user]);
-
-//   const fetchAppointments = async (mentorId) => {
-//     try {
-//       const response = await axios.get(`${config.API_BASE_URL}/mentor-appointments/${mentorId}`, {
-//         headers: { Authorization: `Bearer ${user.token}` }
-//       });
-//       setAppointments(response.data);
-//       setError(null);
-//     } catch (error) {
-//       console.error('Error fetching appointments:', error);
-//       setError('Failed to fetch appointments. Please try again later.');
-//     }
-//   };
-
-//   if (error) {
-//     return <div>Error: {error}</div>;
-//   }
-
-//   return (
-//     <div>
-//       <h2>My Appointments</h2>
-//       {appointments.length === 0 ? (
-//         <p>No appointments found.</p>
-//       ) : (
-//         <ul>
-//           {appointments.map((appointment) => (
-//             <li key={appointment._id}>
-//               <p>User: {appointment.userId?.name || 'Unknown'}</p>
-//               <p>Email: {appointment.userId?.email || 'Unknown'}</p>
-//               <p>Date: {new Date(appointment.date).toLocaleString()}</p>
-//             </li>
-//           ))}
-//         </ul>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default MentorAppointments;
-
-
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
 // import config from '../../config';
 // import { useAuth } from '../../AuthContext';
 // import { Button } from "@/components/ui/button";
 // import { Input } from "@/components/ui/input";
 // import { Label } from "@/components/ui/label";
 // import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 // const MentorAppointments = () => {
 //   const [appointments, setAppointments] = useState([]);
@@ -145,9 +52,11 @@
 //       setScheduleDate('');
 //       setScheduleTime('');
 //       setMeetLink('');
+//       toast.success('Meeting scheduled successfully!');
 //     } catch (error) {
 //       console.error('Error scheduling meeting:', error);
 //       setError('Failed to schedule meeting. Please try again.');
+//       toast.error('Failed to schedule meeting. Please try again.');
 //     }
 //   };
 
@@ -213,11 +122,14 @@
 //           ))}
 //         </ul>
 //       )}
+//       <ToastContainer />
 //     </div>
 //   );
 // };
 
 // export default MentorAppointments;
+
+
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -280,6 +192,20 @@ const MentorAppointments = () => {
     }
   };
 
+  const handleSessionCompleted = async (appointmentId) => {
+    try {
+      await axios.put(`${config.API_BASE_URL}/complete-session/${appointmentId}`, {}, {
+        headers: { Authorization: `Bearer ${user.token}` }
+      });
+      fetchAppointments(user._id);
+      toast.success('Session marked as completed!');
+    } catch (error) {
+      console.error('Error completing session:', error);
+      setError('Failed to mark session as completed. Please try again.');
+      toast.error('Failed to mark session as completed. Please try again.');
+    }
+  };
+
   if (error) {
     return (
       <Alert variant="destructive">
@@ -301,7 +227,8 @@ const MentorAppointments = () => {
               <p className="font-semibold">User: {appointment.userId?.name || 'Unknown'}</p>
               <p>Email: {appointment.userId?.email || 'Unknown'}</p>
               <p>Date: {new Date(appointment.date).toLocaleString()}</p>
-              {!appointment.meetLink && (
+              <p>Status: {appointment.status}</p>
+              {appointment.status === 'pending' && (
                 <div className="mt-4 space-y-2">
                   <Label htmlFor={`date-${appointment._id}`}>Date</Label>
                   <Input
@@ -330,13 +257,19 @@ const MentorAppointments = () => {
                   </Button>
                 </div>
               )}
-              {appointment.meetLink && (
+              {appointment.status === 'scheduled' && (
                 <div className="mt-2">
                   <p>Meeting scheduled for: {new Date(appointment.scheduledDate).toLocaleString()}</p>
                   <a href={appointment.meetLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
                     Join Google Meet
                   </a>
+                  <Button onClick={() => handleSessionCompleted(appointment._id)} className="mt-2 ml-2">
+                    Mark Session as Completed
+                  </Button>
                 </div>
+              )}
+              {appointment.status === 'completed' && (
+                <p className="mt-2 text-green-600">Session completed</p>
               )}
             </li>
           ))}

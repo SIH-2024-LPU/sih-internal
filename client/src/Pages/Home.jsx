@@ -1,23 +1,17 @@
 import React from 'react'
 import Dashboard from './HomePage/HeroSection'
 import ImageCarousel from './HomePage/ImageCarousel'
-import { SizeExample } from './ChatBot'
-
-
+import AskMentor from './HomePage/AskMentor'
+import FAQSection from './HomePage/FAQ'
+import WhyChooseUs from './HomePage/whytochoose'
+import MentorSupport from './HomePage/MentorSupport'
 
 function Home() {
   return (
     <div>
       <Dashboard/>
-      {/* <ImageCarousel/> */}
-      {/* <SizeExample/> */}
-
-
-
-
-
-
-
+      <MentorSupport/>
+      <WhyChooseUs/>
     </div>
   )
 }
