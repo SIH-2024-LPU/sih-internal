@@ -62,21 +62,49 @@ const cloudinary = require('../config/cloudinary');
 // };
 
 
+// exports.createWorkshop = async (req, res) => {
+//   try {
+//     console.log('Received request to create workshop');
+//     console.log('Body:', req.body);
+
+//     if (!req.file) {
+//       console.log('No file uploaded');
+//       return res.status(400).json({ message: 'No file uploaded' });
+//     }
+
+//     console.log('File:', req.file);
+
+//     const workshop = new Workshop({
+//       title: req.body.title,
+//       banner: `/uploads/${req.file.filename}`, // Store the path to the file
+//       date: req.body.date,
+//       time: req.body.time,
+//       location: req.body.location,
+//       ageGroup: req.body.ageGroup,
+//       language: req.body.language,
+//       venueAddress: req.body.venueAddress
+//     });
+
+//     console.log('Workshop object created:', workshop);
+
+//     await workshop.save();
+//     console.log('Workshop saved successfully');
+
+//     res.status(201).json(workshop);
+//   } catch (error) {
+//     console.error('Error in createWorkshop:', error);
+//     res.status(500).json({ 
+//       message: 'An error occurred while creating the workshop',
+//       error: error.message,
+//       stack: error.stack
+//     });
+//   }
+// };
 exports.createWorkshop = async (req, res) => {
   try {
-    console.log('Received request to create workshop');
-    console.log('Body:', req.body);
-
-    if (!req.file) {
-      console.log('No file uploaded');
-      return res.status(400).json({ message: 'No file uploaded' });
-    }
-
-    console.log('File:', req.file);
-
     const workshop = new Workshop({
       title: req.body.title,
-      banner: `/uploads/${req.file.filename}`, // Store the path to the file
+      banner: req.body.banner, // Now expecting a URL instead of a file
       date: req.body.date,
       time: req.body.time,
       location: req.body.location,
@@ -85,21 +113,16 @@ exports.createWorkshop = async (req, res) => {
       venueAddress: req.body.venueAddress
     });
 
-    console.log('Workshop object created:', workshop);
-
     await workshop.save();
-    console.log('Workshop saved successfully');
-
     res.status(201).json(workshop);
   } catch (error) {
-    console.error('Error in createWorkshop:', error);
     res.status(500).json({ 
       message: 'An error occurred while creating the workshop',
-      error: error.message,
-      stack: error.stack
+      error: error.message
     });
   }
 };
+
 
 // ... rest of the controller methods remain the same
 
