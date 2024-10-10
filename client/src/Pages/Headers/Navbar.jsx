@@ -559,6 +559,8 @@ export default function Navbar() {
     { name: 'Mentorship', path: '/mentorship' },
     { name: 'Workshop', path: '/workshops' },
     { name: 'Community', path: '/community' },
+    {name: "PathWays",path:"/careerPaths"
+    },
   ]
 
   const dropdownItems = {
@@ -589,7 +591,7 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <span className="text-xl font-bold text-gray-800">Spark</span>
+              <span className="text-xl font-bold text-gray-800">Skill-Pilot</span>
             </Link>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">

@@ -270,7 +270,7 @@ export default function LoginPage() {
       
       // Redirect based on role
       if (data.role === 'Mentor' || data.role === 'Admin') {
-        window.location.href = '/AMdashboard'
+        window.location.href = '/amdashboard'
       } else {
         window.location.href = '/'
       }

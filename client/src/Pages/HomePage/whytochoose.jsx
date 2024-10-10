@@ -5,8 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 function FeatureCard({ icon, title, description }) {
   return (
     <Card className="flex flex-col items-center text-center border border-border shadow-md transition-all duration-300 hover:shadow-lg group relative overflow-hidden">
-      <div className="absolute inset-0 bg-muted/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
-      <CardHeader className="relative z-10 w-full">
+      <div className=" inset-0 bg-muted/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
+      <CardHeader className="relative z-1000 w-full">
         <div className="flex justify-center items-center mb-4">
           {icon}
         </div>

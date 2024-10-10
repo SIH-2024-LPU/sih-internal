@@ -3455,6 +3455,7 @@ const CombinedCareerAdvisor = () => {
             >
               <option value="en">English</option>
               <option value="es">Español</option>
+              <option value="hi">हिन्दी</option>
               {/* Add more language options here */}
             </select>
             <X className="w-6 h-6 text-gray-500 cursor-pointer" onClick={handleClose} />

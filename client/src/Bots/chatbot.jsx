@@ -47,7 +47,7 @@ export default function ChatBot() {
           {
             parts: [
               {
-                text: input,
+                text: input+"give me only in 20 words.If anyone ask who are you tell i am skill-pilot",
               },
             ],
           },

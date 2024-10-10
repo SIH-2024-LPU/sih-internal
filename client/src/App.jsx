@@ -132,6 +132,8 @@ import DummyJobInfo from './Pages/Recommendation/DummyInfo';
 import MentorshipPage from './Pages/Mentor Home/HomePage';
 import AMDashboard from './Pages/DashBoard/AdminMento';
 import ChatBot from './Bots/chatbot';
+import TechCareerPathsHub from './Roadmap/Roadmap';
+import DetailedDataScientistRoadmap from './Roadmap/DataScientist';
 
 function App() {
   return (
@@ -161,7 +163,7 @@ function App() {
         <Route path="/mentorDashboard" element={<CoachProfile/>}/>      {/*Mentor*/}
         <Route path='/schedulementor'element={<ScheduleSession/>}/>
         <Route path ="/mentor" element={<MentoHome/>}/>
-        <Route path="/frontend" element={<FrontendRoadmap/>}/>
+        <Route path="/softwareengineer" element={<FrontendRoadmap/>}/>
         <Route path="/careerquiz" element={<CareerQuiz/>}/>
         <Route path="/combinedquiz" element={<CombinedCareerAdvisor/>}/>
         <Route path='/profile' element={<Profile/>}/>
@@ -169,6 +171,8 @@ function App() {
         <Route path="/job-info" element={<JobInfo/>}/>
         <Route path="/dummyinfo" element={<DummyJobInfo/>}/>
         <Route path ="/mentorHome" element={<MentorshipPage/>}/>
+        <Route path='/careerPaths' element={<TechCareerPathsHub/>}/>
+        <Route path="/datascientist" element={<DetailedDataScientistRoadmap/>}/>
         {/* User protected routes */}
         <Route element={<ProtectedRoute allowedRoles={['User', 'Mentor', 'Admin']} />}>
           <Route path="/careerform" element={<CareerForm />} />
@@ -185,7 +189,7 @@ function App() {
           <Route path="/my-sessions" element={<MentorAppointments />} />
           <Route path="/interestForm" element={<InterestManagement/>}/>
           <Route path='/StrengthForm' element={<StrengthManagement/>}/>
-          <Route path='/AMDashboard'element={<AMDashboard/>}/>
+          <Route path='/amdashboard'element={<AMDashboard/>}/>
           <Route path='/skillform' element={<SkillsManagement/>}/>
           <Route path='/collegeform'element={<CollegesManagement/>}/>
           <Route path ="/recommendationForm"element={<RecommendationForm/>}/>
