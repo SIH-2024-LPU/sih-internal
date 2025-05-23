@@ -1,5 +1,7 @@
 # Career Counselling and Guidance Programs in Schools
 
+[![View Live](https://img.shields.io/badge/View%20Live-%23007BFF.svg?style=for-the-badge&logo=google-chrome&logoColor=white)](http://pratimesh.com)
+
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Problem Statement](#problem-statement)
